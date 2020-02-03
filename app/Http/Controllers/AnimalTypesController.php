@@ -15,7 +15,7 @@ class AnimalTypesController extends Controller
      */
     public function index()
     {
-        $posts = AnimalTypes::orderBy('id', 'desc')->paginate(10);
+        $posts = AnimalTypes::all();
         return view('animaltypes.index')->with('posts', $posts);
     }
 
@@ -68,7 +68,7 @@ class AnimalTypesController extends Controller
         $post->save();
 
         //Redirect
-        return redirect('/animaltypes')->with('success', 'Post Created');
+        return redirect('animal/types')->with('success', 'Post Created');
     }
 
     /**
@@ -111,7 +111,7 @@ class AnimalTypesController extends Controller
             'description' => 'required',
             'image' => 'image|nullable|max:1999'
         ]);
-        
+
         // Handle file Upload
         if($request->hasFile('image')){
         // Get filename with the extension
@@ -134,7 +134,7 @@ class AnimalTypesController extends Controller
         }
         $post->save();
 
-        return redirect('/animaltypes')->with('success', 'Post Updated');
+        return redirect('/animal/types')->with('success', 'Post Updated');
     }
 
     /**
@@ -156,6 +156,6 @@ class AnimalTypesController extends Controller
 
         // Delete the specific post using the ID user from the database
         $post->delete();
-        return redirect('/animaltypes')->with('success', 'Post Removed');
+        return redirect('/animal/types')->with('success', 'Post Removed');
     }
 }

@@ -62,7 +62,7 @@ class CategoriesController extends Controller
     public function show($id)
     {
         $post = Categories::find($id);
-        return view('categories.show')->with('post', $post);
+        return view('categories.index')->with('post', $post);
     }
 
     /**
@@ -73,10 +73,10 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        $post = Categories::find($id);
+        $editCategories = Categories::find($id);
 
         // Return to the page
-        return view('categories.edit')->with('post', $post);
+        return view('categories.index')->with('editCategory', $editCategories);
     }
 
     /**
@@ -92,7 +92,7 @@ class CategoriesController extends Controller
             'category_type' => 'required',
             'description' => 'required'
         ]);
-        
+
 
         //Create Post
         $post = Categories::find($id);

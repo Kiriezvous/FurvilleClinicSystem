@@ -17,7 +17,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $posts["Products"] = Products::orderBy('id', 'desc')->paginate(10);
+        $posts["Products"] = Products::all();
         $posts["Categories"] = Categories::all();
         return view('products.index', $posts);
     }
@@ -77,7 +77,7 @@ class ProductsController extends Controller
         $post->product_price = $request->input('product_price');
         $post->image = $fileNameToStore;
         $post->save();
-        
+
 
         //Redirect
         return redirect('/products')->with('success', 'Post Created');
@@ -103,7 +103,7 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        $post = Products::find($id);
+        $products = Products::find($id);
         $categories = Categories::all();
 
         // Check for correct user
@@ -112,7 +112,7 @@ class ProductsController extends Controller
         // }
 
         // Return to the page
-        return view('products.edit')->with('post', $post)->with('categories', $categories);
+        return view('products.edit')->with('product', $products)->with('category', $categories);
     }
 
     /**
@@ -133,7 +133,7 @@ class ProductsController extends Controller
             'product_price' => 'required',
             'image' => 'image|nullable|max:1999'
         ]);
-        
+
          // Handle file Upload
          if($request->hasFile('image')){
         // Get filename with the extension

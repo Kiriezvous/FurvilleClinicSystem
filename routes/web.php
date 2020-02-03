@@ -24,7 +24,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 //It gets what ever path in the Controller@- so you dont need to specify or such and it should be above the route
 //Route::get('/{any}', 'HomeController@index')->where('any', '.*');
@@ -33,12 +32,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Route::get('accounts/register', 'User\DoctorController@create');
 //Route::post('register', 'RegistrationController@store');
 
-//Route::get('appointment', 'EventController@index')->name('index'); //Make it a resource array later
-Route::get('appointment', 'FullCalendarController@index');
-Route::get('/load-events', 'EventController@loadEvents')->name('routeloadEvents');
-Route::get('appointment/create', 'EventController@create');
-Route::get('appointment/update', 'EventController@update');
-Route::get('appointment/delete', 'EventController@destroy');
 
 
 
@@ -48,15 +41,4 @@ Route::get('/about', 'PagesController@about')->name('About');
 Route::get('/service', 'PagesController@service')->name('Service');
 Route::get('/profile', 'PagesController@profile')->name('Profile');
 
-Route::resources([
-    'categories' => 'CategoriesController',
-    'users' => 'LoginController',
-    'products' => 'ProductsController',
-    'services' => 'ServicesController',
-    'animaltypes' => 'AnimalTypesController',
-    'characteristics' => 'BreedCharacteristicsController',
-    'dogs'=> 'DogsController',
-    'cats' => 'CatsController',
-    'pets' => 'PetsController',
-    'events' => 'EventController'
-]);
+

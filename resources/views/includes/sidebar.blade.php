@@ -57,7 +57,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/appointment/create" class="nav-link">
+                            <a href="/walk-in" class="nav-link">
                                 <i class="fas fa-clock"></i>
                                 <p>Add Schedule</p>
                             </a>
@@ -88,7 +88,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="/service" class="nav-link">
+                    <a href="/services" class="nav-link">
                         <i class="nav-icon fas fa-cut"></i>
                         <p>
                             Service
@@ -106,25 +106,25 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/animal/types" class="nav-link">
+                            <a href="/animaltypes" class="nav-link">
                                 <i class="fas fa-filter"></i>
                                 <p>Types</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/animal/characteristics" class="nav-link">
+                            <a href="/characteristics" class="nav-link">
                                 <i class="fas fa-font"></i>
                                 <p>Characteristics</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/animal/dog" class="nav-link">
+                            <a href="/dogs" class="nav-link">
                                 <i class="fas fa-dog"></i>
                                 <p>Dog Breed</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/animal/cat" class="nav-link">
+                            <a href="/cats" class="nav-link">
                                 <i class="fas fa-cat"></i>
                                 <p>Cat Breed</p>
                             </a>
@@ -141,15 +141,15 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/users" class="nav-link">
+                            <a href="/employees" class="nav-link">
                                 <i class="fas fa-user-md"></i>
                                 <p>Doctors</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="/users" class="nav-link">
-                                <i class="fas fa-user-nurse"></i>
-                                <p>Staff</p>
+                                <i class="fas fa-user"></i>
+                                <p>Customers</p>
                             </a>
                         </li>
                     </ul>

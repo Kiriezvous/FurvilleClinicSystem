@@ -4,13 +4,8 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Staff;
-use DB;
-use Illuminate\Support\Facades\Hash;
 
-class StaffController extends Controller
+class CustomerController extends Controller
 {
-
-
-
+    //
 }

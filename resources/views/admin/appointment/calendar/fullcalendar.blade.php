@@ -83,27 +83,10 @@
                                 <div class="card-header">
                                     <h3 class="card-title">Create Event</h3>
                                 </div>
-                                <div class="card-body">
-                                    <div class="btn-group" style=" width:100%; margin-bottom: 10px;">
-                                   <ul class="fc-color-picker" id="color-chooser">
-                                       <li><a href="#" class="text-primary"><i class="fas fa-square"></i></a></li>
-                                       <li><a href="#" class="text-primary"><i class="fas fa-square"></i></a></li>
-                                       <li><a href="#" class="text-primary"><i class="fas fa-square"></i></a></li>
-                                       <li><a href="#" class="text-primary"><i class="fas fa-square"></i></a></li>
-                                   </ul>
-                                   </div>
-
-                                   <div class="input-group">
-                                       <input type="text" class="form-control" id="new-event" placeholder="Event Title">
-
-                                       <div class="input-group-append">
-                                           <button id="add-new-event" type="button" class="btn btn-primary">Add</button>
-                                       </div>
-                                   </div>
+                                <div class="card-body" data-toggle="modal" data-target="#exampleModal">
+                                    <button type="button" class="btn btn-block btn-primary btn-lg">New Schedule</button>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
 
@@ -134,6 +117,49 @@
         </div>
         <!-- ./wrapper -->
 
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New Clinic Event Schedule</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {!! Form::open(['action'=> 'EventController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                        <div class="form-group">
+                            {{Form::label('title', 'Client Name')}}
+                            {{Form::text('title', ' ', ['class' => 'form-control', 'placeholder' => 'Title'])}}
+                        </div>
+
+                        <div class="form-group">
+                            {{Form::label('start', 'Start Date')}}
+                            {{Form::text('start', ' ', ['class' => 'form-control', 'placeholder' => 'Start Date', 'id'=>'start'])}}
+                        </div>
+                        <div class="form-group">
+                            {{Form::label('end', 'End Date')}}
+                            {{Form::text('end', ' ', ['class' => 'form-control', 'placeholder' => 'Pick', 'id' => 'end'])}}
+                        </div>
+
+                        {{--    <div class="form-group">--}}
+                        {{--        {{Form::label('description', 'Description')}}--}}
+                        {{--        {{Form::text('description', ' ', ['class' => 'form-control', 'placeholder' => 'Description'])}}--}}
+                        {{--    </div>--}}
+                        <div class="form-group">
+                            {{Form::label('color', 'Service Type')}}
+                            {{Form::text('color', ' ', ['class' => 'form-control', 'placeholder' => 'Pick a Color'])}}
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        {{Form::submit('Submit', ['class'=>'btn btn-success'])}}
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
+        </div>
 
       <!-- jQuery -->
       <script src="/js/app.js"></script>
@@ -213,11 +239,9 @@
             "title": "{{ $event->title }}",
             "start": "{{ $event->start }}",
             "end": "{{ $event->end }}",
-
           },
           @endforeach
         ]
-
       });
       //console.log("Hello" + routeEvents('routeloadEvents'));
       calendar.render();
