@@ -106,27 +106,44 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/animaltypes" class="nav-link">
+                            <a href="/types" class="nav-link">
                                 <i class="fas fa-filter"></i>
                                 <p>Types</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/characteristics" class="nav-link">
-                                <i class="fas fa-font"></i>
-                                <p>Characteristics</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/dogs" class="nav-link">
+                            <a href="/breeds" class="nav-link">
                                 <i class="fas fa-dog"></i>
-                                <p>Dog Breed</p>
+                                <p>Breed</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-user-injured"></i>
+                        <p>
+                            Patients
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/records" class="nav-link">
+                                <i class="fas fa-record-vinyl"></i>
+                                <p>Records</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/cats" class="nav-link">
-                                <i class="fas fa-cat"></i>
-                                <p>Cat Breed</p>
+                            <a href="/patients" class="nav-link">
+                                <i class="fas fa-user-injured"></i>
+                                <p>Patients</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/diagnoses" class="nav-link">
+                                <i class="fas fa-diagnoses"></i>
+                                <p>Diagnoses</p>
                             </a>
                         </li>
                     </ul>
@@ -141,13 +158,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/employees" class="nav-link">
+                            <a href="/doctors" class="nav-link">
                                 <i class="fas fa-user-md"></i>
                                 <p>Doctors</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/users" class="nav-link">
+                            <a href="/employees" class="nav-link">
+                                <i class="fas fa-user-nurse"></i>
+                                <p>Staff</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/clients" class="nav-link">
                                 <i class="fas fa-user"></i>
                                 <p>Customers</p>
                             </a>

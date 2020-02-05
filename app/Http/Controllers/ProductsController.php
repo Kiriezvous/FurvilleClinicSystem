@@ -10,11 +10,6 @@ use DB;
 
 class ProductsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $posts["Products"] = Products::all();
@@ -22,26 +17,8 @@ class ProductsController extends Controller
         return view('products.index', $posts);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $category = Categories::all();
-        return view('products.create')->with('categories', $category);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-
         //dd($request);
         // Gets the data being create by the User
         $this->validate($request, [
@@ -83,45 +60,12 @@ class ProductsController extends Controller
         return redirect('/products')->with('success', 'Post Created');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $post = Products::find($id);
         return view('products.show')->with('post', $post);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $products = Products::find($id);
-        $categories = Categories::all();
-
-        // Check for correct user
-        // if(auth()->user()->id !== $post->user_id){
-        //     return redirect('/categories')->with('error', 'Unauthorized Page');
-        // }
-
-        // Return to the page
-        return view('products.edit')->with('product', $products)->with('category', $categories);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         // Gets the data being create by the User
@@ -134,8 +78,8 @@ class ProductsController extends Controller
             'image' => 'image|nullable|max:1999'
         ]);
 
-         // Handle file Upload
-         if($request->hasFile('image')){
+        // Handle file Upload
+        if($request->hasFile('image')){
         // Get filename with the extension
         $filenameWithExt = $request->file('image')->getClientOriginalName();
         // Get just filename
@@ -146,7 +90,6 @@ class ProductsController extends Controller
         // Upload Image
         $path = $request->file('image')->storeAs('public/assets/image/products', $fileNameToStore);
         }
-
 
         //Create the Update data
         $post = Products::find($id);
@@ -163,21 +106,10 @@ class ProductsController extends Controller
         return redirect('/products')->with('success', 'Post Updated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         // Looks for the post ID user from the database
         $post = Products::find($id);
-
-        // Check for correct user
-        // if(auth()->user()->id !== $post->user_id){
-        //     return redirect('/categories')->with('error', 'Unauthorized Page');
-        // }
 
         //Image
         if($post->cover_image != 'noimage.jpg'){

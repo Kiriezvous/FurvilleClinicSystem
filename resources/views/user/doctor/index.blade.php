@@ -14,30 +14,13 @@
                 <div class="card-footer border-success">
                     <div style="text-align: center;">
 
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#doctorModal">
                             <div class="small-box-footer">New Doctor <i class="fas fa-arrow-circle-right"></i></div>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-
-                <div class="col-lg-4 mt-3 ml-3">
-                    <!-- small box -->
-                    <div class="small-box bg-success">
-                        <div class="inner">
-                            <h3><i class="fas fa-user-nurse"></i>&nbsp;53 Staff</h3>
-                        </div>
-                        <div class="card-footer border-success">
-                            <div style="text-align: center;">
-
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-                                    <div class="small-box-footer">New Staff <i class="fas fa-arrow-circle-right"></i></div>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
     </div>
     </div>
     </section>
@@ -55,8 +38,7 @@
                     <th>Image</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Action</th>
-
+                    <th>Status</th>
                 </tr>
                 </thead>
                 <!--Table head-->
@@ -68,7 +50,17 @@
                         <td><img width="100px" height="100px" src="/storage/assets/image/users/doctors/{{$doctor->image}}"></td>
                         <td>{{$doctor->name}}</td>
                         <td>{{$doctor->email}}</td>
-                        <td><a href="/categories/{{$doctor->id}}/edit" class="btn btn-info">Edit</a></td>
+                        <td>
+                            @if($doctor->status == '1')
+                                <a href="{{route('doctors.edit', $doctor->id)}}">
+                                    <span class="badge badge-pill badge-success">Active</span>
+                                </a>
+                            @else
+                                <a href="{{route('doctors.edit', $doctor->id)}}">
+                                    <span class="badge badge-pill badge-danger">Disable</span>
+                                </a>
+                            @endif
+                        </td>
                     </tr>
                     @endforeach
                     </tbody>
@@ -80,7 +72,7 @@
     <!-- /.card -->
 
         {{-- Modal--}}
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="doctorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
 
@@ -120,4 +112,7 @@
                 </div>
             </div>
         </div>
+
+
+
 @endsection

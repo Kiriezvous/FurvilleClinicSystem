@@ -55,12 +55,13 @@
               <td>{{$s->service_price}}</td>
               <td>
                   <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#edit{{$s->id}}">
-                      <i class="fas fa-user-edit"></i>
+                      <i class="fas fa-user-edit"></i>Edit
                   </a>
-                  <form method="DELETE" action ="{{route('services.destroy',  $s->id)}}"  accept-charset="UTF-8">
-                      @csrf
-                      <button class="btn btn-danger" type="submit"><i class="fas fa-trash"></i></button>
-                  </form>
+                  {!!Form::open(['action' => ['ServicesController@destroy', $s->id], 'method' => 'POST'])!!}
+                  {{Form::hidden('_method', 'DELETE')}}
+
+                  {{Form::submit('Delete', ['class' => 'btn btn-danger'] )}}
+                  {!!Form::close()!!}
             </td>
             </tr>
           </tbody>
@@ -91,7 +92,7 @@
                               </div>
                           </div>
                           <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                               {{Form::hidden('_method', 'PUT')}}
                               {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}
                               {!! Form::close() !!}

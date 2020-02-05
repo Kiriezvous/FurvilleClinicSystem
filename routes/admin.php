@@ -22,21 +22,28 @@ Route::group(['prefix'  =>  'admin'], function () {
 
 Route::resources([
     'categories' => 'CategoriesController',
-    'employees' => 'User\DoctorController',
-
+    'doctors' => 'User\DoctorController',
+    'employees' => 'User\StaffController',
     'products' => 'ProductsController',
     'services' => 'ServicesController',
-    'animaltypes' => 'AnimalTypesController',
-    'characteristics' => 'BreedCharacteristicsController',
-    'dogs'=> 'DogsController',
-    'cats' => 'CatsController',
-    'pets' => 'PetsController',
+    'types' => 'PetTypeController',
+    'breeds' => 'BreedController',
     'events' => 'EventController',
+    'diagnoses' => 'DiagnosesController',
+    'clients' => 'User\ClientsController',
+    'patients' => 'PatientController'
 ]);
+
 
 //Route::get('appointment', 'EventController@index')->name('index'); //Make it a resource array later
 Route::get('appointment', 'FullCalendarController@index');
 Route::get('/load-events', 'EventController@loadEvents')->name('routeloadEvents');
 Route::get('walk-in', 'EventController@create');
 
+Route::get('export', 'MyController@export')->name('export');
+Route::post('import', 'MyController@import')->name('import');
+
+
+Route::get('export', 'CategoriesController@export')->name('export');
+Route::post('import', 'CategoriesController@import')->name('import');
 

@@ -11,34 +11,13 @@ use Illuminate\Support\Facades\Hash;
 
 class DoctorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $listStaff = Staff::all();
         $listDoctor = Doctor::all();
         return view('user.doctor.index')->with('listDoctor', $listDoctor)->with('listStaff', $listStaff);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('user.doctor.index');
-    }
-
-//    /**
-//     * Store a newly created resource in storage.
-//     *
-//     * @param  \Illuminate\Http\Request  $request
-//     * @return \Illuminate\Http\Response
-//     */
 
     public function store(Request $request)
     {
@@ -74,52 +53,35 @@ class DoctorController extends Controller
         $post->image = $fileNameToStore;
         $post->save();
 
-        //Create the data
-        $post = new Staff;
-        $post->name = $request->input('name');
-        $post->email = $request->input('email');
-        $post->password = Hash::make($post['password']);
-        $post->image = $fileNameToStore;
-        $post->save();
-
         //Redirect
         return redirect('/employees')->with('success', 'Post Created');
     }
 
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        $listStaff = Staff::all();
-        $listDoctor = Doctor::all();
+        $doctor = Doctor::find($id);
+
+        $status = $doctor->status;
+
+        if($status == 1){
+            $doctor->status = '0';
+            $doctor->save();
+        }
+
+        if($status == 0){
+            $doctor->status = '1';
+            $doctor->save();
+        }
 
         // Return to the page
-        return view('user.doctor.index')->with('listDoctor', $listDoctor)->with('listStaff', $listStaff);
+        return back()->withInput();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         // Gets the data being create by the User
@@ -153,22 +115,23 @@ class DoctorController extends Controller
         $post->image = $fileNameToStore;
         $post->save();
 
-        //Create the data
-        $post = Staff::find($id);
-        $post->name = $request->input('name');
-        $post->email = $request->input('email');
-        $post->password = Hash::make($post['password']);
-        $post->image = $fileNameToStore;
-        $post->save();
-
         //Redirect
         return redirect('/employees')->with('success', 'Post Created');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function destroy($id)
+    {
+        // Looks for the post ID user from the database
+        $post = Doctor::find($id);
+
+        //Image
+//        if($post->image != 'noimage.jpg'){
+//            // Delete Image
+//            Storage::delete('public/animaltypes/'.$post->image);
+//        }
+
+        // Delete the specific post using the ID user from the database
+        $post->delete();
+        return redirect('/doctors')->with('success', 'Post Removed');
+    }
 }

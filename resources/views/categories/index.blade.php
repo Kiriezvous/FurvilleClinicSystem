@@ -43,7 +43,6 @@
             </tr>
             </thead>
             <!--Table head-->
-        @if(count($posts)> 0)
                 <!--Table body-->
                     <tbody>
                     @foreach($posts as $category)
@@ -53,11 +52,13 @@
                         <td>{{$category->description}}</td>
                         <td>
                             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#edit{{$category->id}}">
-                                <i class="fas fa-user-edit"></i>
+                                <i class="fas fa-user-edit"></i> Edit
                             </a>
-                            <form method="DELETE" action="{{route('categories.destroy',  $category->id)}}"  accept-charset="UTF-8">
-                                <button class="btn btn-danger" type="submit"><i class="fas fa-trash"></i></button>
-                            </form>
+                            {!!Form::open(['action' => ['CategoriesController@destroy', $category->id], 'method' => 'POST'])!!}
+                            {{Form::hidden('_method', 'DELETE')}}
+
+                            {{Form::submit('Delete', ['class' => 'btn btn-danger'] )}}
+                            {!!Form::close()!!}
                         </td>
                         <!--Modal Edit body-->
                         <div class="modal fade" id="edit{{$category->id}}" tabindex="-1" role="dialog">
@@ -70,7 +71,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        {!! Form::open(['action'=> 'CategoriesController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                                        {!! Form::open(['action'=> ['CategoriesController@update', $category->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                                         <div class="form-group">
                                             {{Form::label('category_type', 'Category Type')}}
                                             {{Form::text('category_type', $category->category_type, ['class' => 'form-control', 'placeholder' => 'Category Type'])}}
@@ -80,13 +81,12 @@
                                             {{Form::text('description', $category->description, ['class' => 'form-control', 'placeholder' => 'Description'])}}
                                         </div>
                                     </div>
-
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                                        {{Form::submit('Submit', ['class'=>'btn btn-success'])}}
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        {{Form::hidden('_method', 'PUT')}}
+                                        {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}
                                         {!! Form::close() !!}
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -102,14 +102,27 @@
             </tr>
             </tfoot>
         </table>
-        @else
-            <p>No category found</p>
-        @endif
+
     </div>
     <!-- /.card-body -->
 </div>
 <!-- /.card -->
-
+    <div class="container">
+        <div class="card bg-light mt-3">
+            <div class="card-header">
+                Laravel 5.8 Import Export Excel to database Example - ItSolutionStuff.com
+            </div>
+            <div class="card-body">
+                <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="file" name="file" class="form-control">
+                    <br>
+                    <button class="btn btn-success">Import Categories Data</button>
+                    <a class="btn btn-warning" href="{{ route('export') }}">Export Categories Data</a>
+                </form>
+            </div>
+        </div>
+    </div>
 
 <!-- Modal CREATE -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
