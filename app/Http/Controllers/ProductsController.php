@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProductsExport;
+use App\Imports\ProductsImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Products;
 use App\Categories;
 use DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductsController extends Controller
 {
@@ -121,4 +124,18 @@ class ProductsController extends Controller
         $post->delete();
         return redirect('/products')->with('success', 'Post Removed');
     }
+
+    public function export()
+    {
+        return Excel::download(new ProductsExport, 'products.xlsx');
+    }
+
+    public function import()
+    {
+        Excel::import(new ProductsImport, request()->file('file'));
+
+        return back();
+    }
+
+
 }

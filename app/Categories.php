@@ -6,15 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categories extends Model
 {
+    //Import Export
     public $timestamps = false;
     protected $guarded = ['id'];
     protected $table = 'categories';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'category_type', 'description',
     ];

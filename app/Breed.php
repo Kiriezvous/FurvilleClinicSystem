@@ -9,4 +9,6 @@ class Breed extends Model
     public function pettype(){
         return $this->belongsTo('App\PetType', 'animal_type');
     }
+
+
 }

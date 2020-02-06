@@ -47,3 +47,6 @@ Route::post('import', 'MyController@import')->name('import');
 Route::get('export', 'CategoriesController@export')->name('export');
 Route::post('import', 'CategoriesController@import')->name('import');
 
+Route::get('export', 'ProductsController@export')->name('export');
+Route::post('import', 'ProductsController@import')->name('import');
+

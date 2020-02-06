@@ -110,16 +110,23 @@
     <div class="container">
         <div class="card bg-light mt-3">
             <div class="card-header">
-                Laravel 5.8 Import Export Excel to database Example - ItSolutionStuff.com
+                Import Export Categories
             </div>
             <div class="card-body">
                 <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <input type="file" name="file" class="form-control">
+                    <label for="exampleInputFile">File input</label>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="exampleInputFile">
+                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                        </div>
+                    </div>
                     <br>
                     <button class="btn btn-success">Import Categories Data</button>
                     <a class="btn btn-warning" href="{{ route('export') }}">Export Categories Data</a>
                 </form>
+
             </div>
         </div>
     </div>

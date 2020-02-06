@@ -230,7 +230,9 @@
           alert('Date Adjusted');
         },
         select: function(event){
-          alert('event Select');
+            // day_last_clicked = $(this);
+            current_date = date('y/m/d');
+            alert(current_date);
         },
         events:
         [

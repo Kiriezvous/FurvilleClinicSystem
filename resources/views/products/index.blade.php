@@ -86,11 +86,14 @@
                                                         {{Form::text('product_name', $item->product_name, ['class' => 'form-control', 'placeholder' => 'Product Name'])}}
                                                     </div>
                                                     <div class="form-group">
-                                                        {{Form::label('', 'Characteristic Type')}}
-                                                        <select name="category" class = 'form-control'>
-                                                            @foreach ($Categories as $h)
-                                                                <option value="{{$h->id}}">{{$h->category_type}}</option>
+                                                        {{Form::label('', 'Category Type')}}
+                                                        <select name="category" class="form-control">
+                                                            <option selected value="{{$item->product->id}}">{{$item->product->category_type}}</option>
+                                                            <optgroup label="Categories">
+                                                                @foreach ($Categories as $category)
+                                                                <option value="{{$category->id}}">{{$category->category_type}}</option>
                                                             @endforeach
+                                                            </optgroup>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
@@ -130,6 +133,30 @@
         </div>
     </div>
     <!-- /.row -->
+
+        <div class="container">
+            <div class="card bg-light mt-3">
+                <div class="card-header">
+                    Import Export Products
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <label for="exampleInputFile">File input</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="exampleInputFile">
+                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                            </div>
+                        </div>
+                        <br>
+                        <button class="btn btn-success">Import Products Data</button>
+                        <a class="btn btn-warning" href="{{ route('export') }}">Export Products Data</a>
+                    </form>
+
+                </div>
+            </div>
+        </div>
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
