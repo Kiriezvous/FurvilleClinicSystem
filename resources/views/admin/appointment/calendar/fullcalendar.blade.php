@@ -133,7 +133,6 @@
                             {{Form::label('title', 'Client Name')}}
                             {{Form::text('title', ' ', ['class' => 'form-control', 'placeholder' => 'Title'])}}
                         </div>
-
                         <div class="form-group">
                             {{Form::label('start', 'Start Date')}}
                             {{Form::text('start', ' ', ['class' => 'form-control', 'placeholder' => 'Start Date', 'id'=>'start'])}}
@@ -142,11 +141,6 @@
                             {{Form::label('end', 'End Date')}}
                             {{Form::text('end', ' ', ['class' => 'form-control', 'placeholder' => 'Pick', 'id' => 'end'])}}
                         </div>
-
-                        {{--    <div class="form-group">--}}
-                        {{--        {{Form::label('description', 'Description')}}--}}
-                        {{--        {{Form::text('description', ' ', ['class' => 'form-control', 'placeholder' => 'Description'])}}--}}
-                        {{--    </div>--}}
                         <div class="form-group">
                             {{Form::label('color', 'Service Type')}}
                             {{Form::text('color', ' ', ['class' => 'form-control', 'placeholder' => 'Pick a Color'])}}

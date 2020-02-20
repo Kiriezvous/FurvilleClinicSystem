@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use App\Patients;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 class PatientsExport implements FromCollection
@@ -11,6 +12,6 @@ class PatientsExport implements FromCollection
     */
     public function collection()
     {
-        //
+        return Patients::all();
     }
 }

@@ -47,7 +47,7 @@
             @foreach($Breed as $b)
                 <tr>
                     <td scope="row">{{$b->id}}</td>
-                    <td><img width="100%" src="/storage/assets/image/breed/{{$b->image}}"></td>
+                    <td><img width="100%" src="/assets/images/breeds/{{$b->image}}"></td>
                     <td>{{$b->pettype->name}}</td>
                     <td>{{$b->name}}</td>
                     <td>{{$b->description}}</td>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Breed;
 use App\PetType;
+use Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -20,17 +21,26 @@ class BreedController extends Controller
     {
 //dd($request->all());
 
-        // Handle file Upload
+        //Handle File Upload
         if($request->hasFile('image')){
-            // Get filename with the extension
-            $filenameWithExt = $request->file('image')->getClientOriginalName();
-            // Get just filename
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            // Get just extension
+
+            # Get filename with extension
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
+
+            # Get just filename
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+
+            # Get just extension
             $extension = $request->file('image')->getClientOriginalExtension();
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            // Upload Image
-            $path = $request->file('image')->storeAs('public/assets/image/breeds', $fileNameToStore);
+
+            # Filename to store
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+
+            # Upload Image
+            $path = public_path('assets/images/breeds/' . $fileNameToStore);
+
+            # Create original image
+            Image::make($request->file('image'))->save($path);
         } else {
             $fileNameToStore = 'noimage.jpg';
         }
@@ -54,17 +64,26 @@ class BreedController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Handle file Upload
+        //Handle File Upload
         if($request->hasFile('image')){
-            // Get filename with the extension
-            $filenameWithExt = $request->file('image')->getClientOriginalName();
-            // Get just filename
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            // Get just extension
+
+            # Get filename with extension
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
+
+            # Get just filename
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+
+            # Get just extension
             $extension = $request->file('image')->getClientOriginalExtension();
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            // Upload Image
-            $path = $request->file('image')->storeAs('public/assets/image/breeds', $fileNameToStore);
+
+            # Filename to store
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+
+            # Upload Image
+            $path = public_path('assets/images/breeds/' . $fileNameToStore);
+
+            # Create original image
+            Image::make($request->file('image'))->save($path);
         } else {
             $fileNameToStore = 'noimage.jpg';
         }

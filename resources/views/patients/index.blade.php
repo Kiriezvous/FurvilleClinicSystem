@@ -55,11 +55,11 @@
                             <label for="exampleInputEmail1">Gender</label>
                             <div class="form-group">
                                 <div class="custom-control custom-radio">
-                                    <input class="custom-control-input" type="radio" id="customRadio1" name="gender">
+                                    <input class="custom-control-input" type="radio" id="customRadio1" name="gender" value="Male">
                                     <label for="customRadio1" class="custom-control-label">Male</label>
                                 </div>
                                 <div class="custom-control custom-radio">
-                                    <input class="custom-control-input" type="radio" id="customRadio2" name="gender">
+                                    <input class="custom-control-input" type="radio" id="customRadio2" name="gender" value="Female">
                                     <label for="customRadio2" class="custom-control-label">Female</label>
                                 </div>
                             </div>
@@ -77,9 +77,14 @@
                             <label for="exampleInputEmail1">Weight</label>
                             <input name="weight" type="text" class="form-control" placeholder="Pet's Weight">
                         </div>
-                        <div class="col-5">
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
                             <label for="exampleInputEmail1">Height</label>
                             <input name="height" type="text" class="form-control" placeholder="Pet's Height">
+                        </div>
+                        <div class="col-6">
+                            {{Form::file('image')}}
                         </div>
                     </div>
                 </div><!-- /.card-body -->
@@ -131,7 +136,7 @@
                         @foreach($Patients as $item)
                             <tr>
                                 <th scope="row">{{$item->id}}</th>
-                                <td><img width="100%" src="/storage/assets/image/patients/{{$item->image}}"></td>
+                                <td><img width="100%" src="assets/images/patients/{{$item->image}}"></td>
                                 <td>{{$item->pettype->name}}</td>
                                 <td>{{$item->pet_name}}</td>
                                 <td>{{$item->users->name}}</td>
@@ -176,11 +181,11 @@
                                                 <div class="form-group">
                                                     <label for="gender1">Gender</label>
                                                     <div class="custom-control custom-radio">
-                                                        <input class="custom-control-input" type="radio" id="customRadio3" value="Male" name="gender1" @if($item->gender === "Male") checked @endif>
+                                                        <input class="custom-control-input" type="radio" id="customRadio3" name="gender1" value="@if($item->gender === "Male") @endif">
                                                         <label for="customRadio3" class="custom-control-label">Male</label>
                                                     </div>
                                                     <div class="custom-control custom-radio">
-                                                        <input class="custom-control-input" type="radio" id="customRadio4" value="Female" name="gender1" @if($item->gender === "Female") checked @endif>
+                                                        <input class="custom-control-input" type="radio" id="customRadio4" name="gender1" value="@if($item->gender === "Female") @endif">
                                                         <label for="customRadio4" class="custom-control-label">Female</label>
                                                     </div>
                                                 </div>
@@ -230,7 +235,7 @@
                 Import Export Patients Record
             </div>
             <div class="card-body">
-                <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('Patientsimport') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <label for="exampleInputFile">File input</label>
                     <div class="input-group">
@@ -241,7 +246,7 @@
                     </div>
                     <br>
                     <button class="btn btn-success">Import Patients Data</button>
-                    <a class="btn btn-warning" href="{{ route('export') }}">Export Patients Data</a>
+                    <a class="btn btn-warning" href="{{ route('Patientsexport') }}">Export Patients Data</a>
                 </form>
 
             </div>

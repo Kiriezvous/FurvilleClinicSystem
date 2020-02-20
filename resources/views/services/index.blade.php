@@ -39,18 +39,20 @@
             <tr>
               <th>#</th>
               <th class="th-lg">Service Name</th>
+              <th class="th-lg">Service Type</th>
               <th class="th-lg">Description</th>
               <th class="th-lg">Price</th>
               <th class="th-lg">Actions</th>
             </tr>
           </thead>
           <!--Table head-->
-          @foreach($posts as $s)
           <!--Table body-->
           <tbody>
+          @foreach($posts as $s)
             <tr>
               <th scope="row">{{$s->id}}</th>
               <td>{{$s->service_name}}</td>
+              <td><img src="img/{{$s->service_type}}" width="100px"></td>
               <td>{{$s->service_description}}</td>
               <td>{{$s->service_price}}</td>
               <td>
@@ -64,6 +66,7 @@
                   {!!Form::close()!!}
             </td>
             </tr>
+            @endforeach
           </tbody>
           <!--Table body-->
               <!-- Edit Product Modal -->
@@ -87,6 +90,10 @@
                                   {{Form::text('service_description', $s->service_description, ['class' => 'form-control', 'placeholder' => 'Service Description'])}}
                               </div>
                               <div class="form-group">
+                                  {{Form::label('service_type', 'Service Type')}}
+                                  {{Form::text('service_type', $s->service_type, ['class' => 'form-control', 'placeholder' => 'Service Type'])}}
+                              </div>
+                              <div class="form-group">
                                   {{Form::label('service_price', 'Service Price')}}
                                   {{Form::text('service_price', $s->service_price, ['class' => 'form-control', 'placeholder' => 'Service Price'])}}
                               </div>
@@ -100,7 +107,6 @@
                       </div>
                   </div>
               </div>
-          @endforeach
         </table>
         <!--Table-->
       </div>
@@ -124,6 +130,10 @@
                             <div class="form-group">
                                 {{Form::label('service_description', 'Service Description')}}
                                 {{Form::text('service_description', '', ['class' => 'form-control', 'placeholder' => 'Service Description'])}}
+                            </div>
+                            <div class="form-group">
+                                {{Form::label('service_type', 'Service Type')}}
+                                {{Form::text('service_type', '', ['class' => 'form-control', 'placeholder' => 'Service Type'])}}
                             </div>
                             <div class="form-group">
                                 {{Form::label('service_price', 'Service Price')}}

@@ -76,12 +76,12 @@ class CategoriesController extends Controller
         return redirect('/categories')->with('success', 'Post Removed');
     }
 
-    public function export()
+    public function Categoriesexport()
     {
         return Excel::download(new CategoriesExport, 'categories.xlsx');
     }
 
-    public function import()
+    public function Categoriesimport()
     {
         Excel::import(new CategoriesImport, request()->file('file'));
 

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Doctor;
+use App\Exports\StaffExport;
 use App\Http\Controllers\Controller;
+use App\Imports\StaffImport;
 use Illuminate\Http\Request;
 use App\Staff;
+use Image;
 use DB;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StaffController extends Controller
 {
@@ -34,17 +37,26 @@ class StaffController extends Controller
             'image' => 'image|nullable|max:1999',
         ]);
 
-        // Handle file Upload
+        //Handle File Upload
         if($request->hasFile('image')){
-            // Get filename with the extension
-            $filenameWithExt = $request->file('image')->getClientOriginalName();
-            // Get just filename
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            // Get just extension
+
+            # Get filename with extension
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
+
+            # Get just filename
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+
+            # Get just extension
             $extension = $request->file('image')->getClientOriginalExtension();
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            // Upload Image
-            $path = $request->file('image')->storeAs('public/assets/image/users/staff', $fileNameToStore);
+
+            # Filename to store
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+
+            # Upload Image
+            $path = public_path('assets/images/staff/' . $fileNameToStore);
+
+            # Create original image
+            Image::make($request->file('image'))->save($path);
         } else {
             $fileNameToStore = 'noimage.jpg';
         }
@@ -99,17 +111,26 @@ class StaffController extends Controller
         ]);
 
 
-        // Handle file Upload
+        //Handle File Upload
         if($request->hasFile('image')){
-            // Get filename with the extension
-            $filenameWithExt = $request->file('image')->getClientOriginalName();
-            // Get just filename
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            // Get just extension
+
+            # Get filename with extension
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
+
+            # Get just filename
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+
+            # Get just extension
             $extension = $request->file('image')->getClientOriginalExtension();
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            // Upload Image
-            $path = $request->file('image')->storeAs('public/assets/image/users/staff', $fileNameToStore);
+
+            # Filename to store
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+
+            # Upload Image
+            $path = public_path('assets/images/staff/' . $fileNameToStore);
+
+            # Create original image
+            Image::make($request->file('image'))->save($path);
         } else {
             $fileNameToStore = 'noimage.jpg';
         }
@@ -124,6 +145,24 @@ class StaffController extends Controller
 
         //Redirect
         return redirect('/employees')->with('success', 'Post Created');
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function Staffexport()
+    {
+        return Excel::download(new Staffexport, 'staffs.xlsx');
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function Staffimport()
+    {
+        Excel::import(new Staffimport, request()->file('file'));
+
+        return back();
     }
 
 }

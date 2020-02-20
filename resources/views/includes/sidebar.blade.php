@@ -25,7 +25,7 @@
                      with font-awesome or any other icon font library -->
                 <li class="nav-item">
                     <a href="/dashboard" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt red"></i>
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
                             <span class="right badge badge-danger">New</span>
@@ -92,7 +92,6 @@
                         <i class="nav-icon fas fa-cut"></i>
                         <p>
                             Service
-                            <span class="right badge badge-danger">New</span>
                         </p>
                     </a>
                 </li>
@@ -141,9 +140,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/diagnoses" class="nav-link">
+                            <a href="/diagnosis" class="nav-link">
                                 <i class="fas fa-diagnoses"></i>
-                                <p>Diagnoses</p>
+                                <p>Diagnosis</p>
                             </a>
                         </li>
                     </ul>
@@ -188,7 +187,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="/reports" class="nav-link">
-                        <i class="nav-icon fas fa-toggle-on orange"></i>
+                        <i class="nav-icon fas fa-toggle-on"></i>
                         <p>
                             Reports
                             <span class="right badge badge-danger">New</span>

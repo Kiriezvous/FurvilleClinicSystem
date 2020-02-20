@@ -10,6 +10,7 @@ use App\Products;
 use App\Categories;
 use DB;
 use Maatwebsite\Excel\Facades\Excel;
+use Image;
 
 class ProductsController extends Controller
 {
@@ -33,31 +34,39 @@ class ProductsController extends Controller
             'image' => 'image|nullable|max:1999'
         ]);
 
-        // Handle file Upload
+        //Handle File Upload
         if($request->hasFile('image')){
-            // Get filename with the extension
-            $filenameWithExt = $request->file('image')->getClientOriginalName();
-            // Get just filename
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            // Get just extension
+
+            # Get filename with extension
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
+
+            # Get just filename
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+
+            # Get just extension
             $extension = $request->file('image')->getClientOriginalExtension();
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            // Upload Image
-            $path = $request->file('image')->storeAs('public/assets/image/products', $fileNameToStore);
+
+            # Filename to store
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+
+            # Upload Image
+            $path = public_path('assets/images/products/' . $fileNameToStore);
+
+            # Create original image
+            Image::make($request->file('image'))->save($path);
         } else {
             $fileNameToStore = 'noimage.jpg';
         }
 
         //Create the data
         $post = new Products;
-        $post->product_name = $request->input('product_name');
+        $post->product_name = $request->product_name;
         $post->category_id = $request->category;
-        $post->product_quantity = $request->input('product_quantity');
-        $post->product_description = $request->input('product_description');
-        $post->product_price = $request->input('product_price');
+        $post->product_quantity = $request->product_quantity;
+        $post->product_description = $request->product_description;
+        $post->product_price = $request->product_price;
         $post->image = $fileNameToStore;
         $post->save();
-
 
         //Redirect
         return redirect('/products')->with('success', 'Post Created');
@@ -81,17 +90,28 @@ class ProductsController extends Controller
             'image' => 'image|nullable|max:1999'
         ]);
 
-        // Handle file Upload
+        //Handle File Upload
         if($request->hasFile('image')){
-        // Get filename with the extension
-        $filenameWithExt = $request->file('image')->getClientOriginalName();
-        // Get just filename
-        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-        // Get just extension
-        $extension = $request->file('image')->getClientOriginalExtension();
-        $fileNameToStore = $filename.'_'.time().'.'.$extension;
-        // Upload Image
-        $path = $request->file('image')->storeAs('public/assets/image/products', $fileNameToStore);
+
+            # Get filename with extension
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
+
+            # Get just filename
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+
+            # Get just extension
+            $extension = $request->file('image')->getClientOriginalExtension();
+
+            # Filename to store
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+
+            # Upload Image
+            $path = public_path('assets/images/products/' . $fileNameToStore);
+
+            # Create original image
+            Image::make($request->file('image'))->save($path);
+        } else {
+            $fileNameToStore = 'noimage.jpg';
         }
 
         //Create the Update data
@@ -117,7 +137,7 @@ class ProductsController extends Controller
         //Image
         if($post->cover_image != 'noimage.jpg'){
             // Delete Image
-            Storage::delete('public/assets/image/products/'.$post->image);
+            Storage::delete('assets/image/products/'.$post->image);
         }
 
         // Delete the specific post using the ID user from the database
@@ -125,12 +145,12 @@ class ProductsController extends Controller
         return redirect('/products')->with('success', 'Post Removed');
     }
 
-    public function export()
+    public function Productsexport()
     {
         return Excel::download(new ProductsExport, 'products.xlsx');
     }
 
-    public function import()
+    public function Productsimport()
     {
         Excel::import(new ProductsImport, request()->file('file'));
 

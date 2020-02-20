@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Exports\PatientsExport;
+use App\Imports\PatientsImport;
 use App\Patients;
 use App\User;
 use App\BloodTypes;
 use App\Breed;
 use App\PetType;
+use Image;
+use DB;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class PatientController extends Controller
@@ -37,17 +41,26 @@ class PatientController extends Controller
             'image' => 'image|nullable|max:1999'
         ]);
 
-        // Handle file Upload
+        //Handle File Upload
         if($request->hasFile('image')){
-            // Get filename with the extension
-            $filenameWithExt = $request->file('image')->getClientOriginalName();
-            // Get just filename
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            // Get just extension
+
+            # Get filename with extension
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
+
+            # Get just filename
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+
+            # Get just extension
             $extension = $request->file('image')->getClientOriginalExtension();
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            // Upload Image
-            $path = $request->file('image')->storeAs('public/assets/image/patients', $fileNameToStore);
+
+            # Filename to store
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+
+            # Upload Image
+            $path = public_path('assets/images/patients/' . $fileNameToStore);
+
+            # Create original image
+            Image::make($request->file('image'))->save($path);
         } else {
             $fileNameToStore = 'noimage.jpg';
         }
@@ -96,17 +109,26 @@ class PatientController extends Controller
 //            'image' => 'image|nullable|max:1999'
 //        ]);
 
-        // Handle file Upload
+        //Handle File Upload
         if($request->hasFile('image')){
-            // Get filename with the extension
-            $filenameWithExt = $request->file('image')->getClientOriginalName();
-            // Get just filename
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            // Get just extension
+
+            # Get filename with extension
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
+
+            # Get just filename
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+
+            # Get just extension
             $extension = $request->file('image')->getClientOriginalExtension();
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            // Upload Image
-            $path = $request->file('image')->storeAs('public/assets/image/patients', $fileNameToStore);
+
+            # Filename to store
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+
+            # Upload Image
+            $path = public_path('assets/images/patients/' . $fileNameToStore);
+
+            # Create original image
+            Image::make($request->file('image'))->save($path);
         } else {
             $fileNameToStore = 'noimage.jpg';
         }
@@ -136,5 +158,16 @@ class PatientController extends Controller
         //
     }
 
+    public function Patientsexport()
+    {
+        return Excel::download(new PatientsExport, 'patients.xlsx');
+    }
+
+    public function Patientsimport()
+    {
+        Excel::import(new PatientsImport, request()->file('file'));
+
+        return back();
+    }
 
 }

@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Exports\DoctorsExport;
 use App\Http\Controllers\Controller;
+use App\Imports\DoctorsImport;
 use Illuminate\Http\Request;
 use App\Doctor;
 use App\Staff;
 use DB;
+use Image;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DoctorController extends Controller
 {
@@ -29,17 +33,26 @@ class DoctorController extends Controller
             'image' => 'image|nullable|max:1999',
         ]);
 
-        // Handle file Upload
+        //Handle File Upload
         if($request->hasFile('image')){
-            // Get filename with the extension
-            $filenameWithExt = $request->file('image')->getClientOriginalName();
-            // Get just filename
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            // Get just extension
+
+            # Get filename with extension
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
+
+            # Get just filename
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+
+            # Get just extension
             $extension = $request->file('image')->getClientOriginalExtension();
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            // Upload Image
-            $path = $request->file('image')->storeAs('public/assets/image/users/doctors', $fileNameToStore);
+
+            # Filename to store
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+
+            # Upload Image
+            $path = public_path('assets/images/doctors/' . $fileNameToStore);
+
+            # Create original image
+            Image::make($request->file('image'))->save($path);
         } else {
             $fileNameToStore = 'noimage.jpg';
         }
@@ -54,7 +67,7 @@ class DoctorController extends Controller
         $post->save();
 
         //Redirect
-        return redirect('/employees')->with('success', 'Post Created');
+        return redirect('/doctors')->with('success', 'Post Created');
     }
 
     public function show($id)
@@ -92,17 +105,26 @@ class DoctorController extends Controller
             'image' => 'image|nullable|max:1999',
         ]);
 
-        // Handle file Upload
+        //Handle File Upload
         if($request->hasFile('image')){
-            // Get filename with the extension
-            $filenameWithExt = $request->file('image')->getClientOriginalName();
-            // Get just filename
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            // Get just extension
+
+            # Get filename with extension
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
+
+            # Get just filename
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+
+            # Get just extension
             $extension = $request->file('image')->getClientOriginalExtension();
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            // Upload Image
-            $path = $request->file('image')->storeAs('public/assets/image/users/doctors', $fileNameToStore);
+
+            # Filename to store
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+
+            # Upload Image
+            $path = public_path('assets/images/doctors/' . $fileNameToStore);
+
+            # Create original image
+            Image::make($request->file('image'))->save($path);
         } else {
             $fileNameToStore = 'noimage.jpg';
         }
@@ -133,5 +155,23 @@ class DoctorController extends Controller
         // Delete the specific post using the ID user from the database
         $post->delete();
         return redirect('/doctors')->with('success', 'Post Removed');
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function Doctorsexport()
+    {
+        return Excel::download(new Doctorsexport, 'doctors.xlsx');
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function Doctorsimport()
+    {
+        Excel::import(new Doctorsimport, request()->file('file'));
+
+        return back();
     }
 }

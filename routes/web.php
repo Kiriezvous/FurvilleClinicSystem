@@ -25,20 +25,24 @@ Route::get('/', function () {
 Auth::routes();
 
 
+
 //It gets what ever path in the Controller@- so you dont need to specify or such and it should be above the route
 //Route::get('/{any}', 'HomeController@index')->where('any', '.*');
 
 //Users>
 //Route::get('accounts/register', 'User\DoctorController@create');
 //Route::post('register', 'RegistrationController@store');
-
+;
 
 
 
 // Website
-Route::get('/home', 'PagesController@home')->name('Home'); //We could changed it somewhere where we could put the verification part that is needed in the system
-Route::get('/about', 'PagesController@about')->name('About');
-Route::get('/service', 'PagesController@service')->name('Service');
-Route::get('/profile', 'PagesController@profile')->name('Profile');
+Route::get('home', 'PagesController@home')->name('Home'); //We could changed it somewhere where we could put the verification part that is needed in the system
+Route::get('about', 'PagesController@about')->name('About');
+Route::get('service', 'PagesController@service')->name('Service');
+Route::get('profile', 'PagesController@profile')->name('Profile');
+Route::get('online-appointment', 'PagesController@appointment')->name('Appointment');
+Route::get('gallery', 'PagesController@gallery')->name('Gallery');
+Route::get('shoppingcart', 'PagesController@shoppingcart')->name('ShoppingCart');
 
 

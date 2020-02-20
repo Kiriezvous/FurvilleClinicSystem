@@ -1,0 +1,493 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+#nav-bar{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.navbar{
+    background-image: linear-gradient(to right, orange, darkorange);
+    padding: 0 !important;
+}
+.navbar-brand img {
+    height: 40px;
+    padding-left: 20px;
+}
+.navbar-nav li{
+    padding: 0 10px;
+}
+navbar-nav li  a{
+    color: darkorange !important;
+    font-weight: 600;
+    float: right;
+    text-align: left;
+}
+.fa-bars{
+    color: black;
+    font-size: 30px !important;
+}
+.navbar-toggler{
+    outline: none !important;
+}
+
+
+/*----------banner section-------*/
+#about{
+    background: white;
+    padding-top: 5%;
+}
+
+.title-about{
+    font-size: 40px;
+    font-weight: 600;
+    margin-top: 100px;
+}
+
+.about-description {
+    color: white;
+    font-size: 20px;
+}
+
+.play-btn{
+    width: 45px;
+    margin: 20px;
+}
+
+/*----------products-------*/
+
+#products{
+    padding: 80px 0;
+    }
+
+#products .card {
+    display: grid;
+    grid-template-columns: 300px;
+    grid-template-rows: 210px 210px 80px;
+    grid-template-areas: "image" "text" "stats";
+    margin-right: 70px;
+    font-family: roboto, sans-serif;
+    border-radius: 18px;
+    background: white;
+    /*box-shadow: 5px 5px 15px rgba(0,0,0,0.9);*/
+    text-align: center;
+}
+
+.card-image {
+    grid-area: image;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-size: cover;
+}
+
+.card-text {
+    grid-area: text;
+    margin: 25px;
+}
+
+.card-text .date {
+    color: rgb(255, 123, 0);
+    font-size: 20px;
+}
+
+.card-text p {
+    color: grey;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.card-text h2 {
+    margin-top: 0px;
+    font-size: 28px;
+}
+
+.card-stats {
+    grid-area: stats;
+    display: grid;
+    grid-template-columns:  1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-image: linear-gradient(to right,orange, darkorange);
+}
+.card img {
+    width: 100%;
+    height: 230px;
+}
+
+.card-stats .stat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    color: white;
+}
+
+.card-stats .type {
+    font-size: 11px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.card-stats .value {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+#products .btn-primary {
+    box-shadow: none;
+    padding: 8px 25px;
+    border: none;
+    font-size: 25px;
+    border-radius: 20px;
+    background-image: linear-gradient(to right, orange, darkorange);
+}
+
+.svg-color2 {
+    background: linear-gradient(to right, orange, darkorange);
+}
+
+
+/*----------services-------*/
+
+#services{
+    padding: 80px 0;
+    background: linear-gradient(to right, orange, darkorange);
+}
+.service-img{
+    width: 150px;
+    margin-top: 20px;
+}
+.services{
+    padding: 20px;
+}
+
+.services h4{
+    padding: 5px;
+    margin-top: 25px;
+    text-transform: uppercase;
+    color: white;
+}
+
+.services p {
+    color: white;
+}
+#services .btn-primary {
+    box-shadow: none;
+    padding: 8px 25px;
+    border: none;
+    font-size: 25px;
+    border-radius: 20px;
+    background-image: linear-gradient(to right, orange, darkorange);
+}
+
+#services .btn-primary a {
+    text-decoration: none;
+    color: white;
+}
+
+.card-service-img {
+    width: 150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.card-service-title {
+    text-align: center;
+    font-size: 24px;
+}
+
+/* Doctors */
+#doctors{
+    padding: 80px 0;
+    background: linear-gradient(to right, orange, darkorange);
+}
+
+#doctors .insider {
+    margin-left: 50px;
+}
+
+.insider {
+    width: 100%;
+    min-height: 380px;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.doctors {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+    box-shadow: 0 0 20px -15px black;
+    transition: transform .8s;
+}
+
+.doctors-img{
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    margin: -90px auto 0;
+    background: #ffffff;
+    border: 10px solid white;
+}
+
+.doctors-img img {
+    width: 50px;
+    margin-top: 20px;
+}
+
+.doctors h4 {
+    height: 50px;
+    width: 80%;
+    background: #ffffff;
+    margin: 50px auto;
+    position: relative;
+    color: orange;
+}
+
+.doctors p {
+    color: orange;
+}
+
+.dropShadow1 {
+    height: 200px;
+    width: 80%;
+    background : #fff;
+    position: absolute;
+    border-radius: 10px;
+    bottom: 0;
+    left: 10%;
+    z-index: -1;
+    box-shadow: 0 0 20px -15px black;
+    transition: transform .8s;
+}
+
+.dropShadow2 {
+    height: 200px;
+    width: 64%;
+    background : #fff;
+    position: absolute;
+    border-radius: 10px;
+    bottom: 0;
+    left: 18%;
+    z-index: -2;
+}
+
+.insider:hover .doctors {
+    transform: translateY(-50px);
+}
+
+.insider:hover .dropShadow1 {
+    transform: translateY(-25px);
+}
+
+.title-white {
+    font-size: 40px;
+    font-weight: 600;
+    margin-top: 100px;
+    color: white;
+}
+
+/*Gallery*/
+.gallery-section {
+    width: 100%;
+    padding: 60px 0;
+    background: #f1f1f1;
+}
+
+.inner-width {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.gallery-section h1 {
+    text-align: center;
+    text-transform: uppercase;
+    color: #333;
+}
+
+.border {
+    width: 180px;
+    height: 4px;
+    background: #333;
+    margin: 60px auto;
+}
+
+.gallery-section .gallery {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+}
+
+.gallery-section .image {
+    flex: 25%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.gallery-section .image img {
+    width: 100%;
+    height: 100%;
+    transition: 0.4s;
+}
+
+.gallery-section .image:hover img {
+    transform: scale(1.4) rotate(15deg);
+}
+
+@media screen and (max-width: 960px) {
+    .gallery-section ,image {
+        flex: 33.33%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .gallery-section ,image {
+        flex: 50%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .gallery-section ,image {
+        flex: 100%;
+    }
+}
+
+/*About Page*/
+
+.missionvision {
+    position: relative;
+    width: 1200px;
+    height: 300px;
+    margin: 240px auto;
+}
+
+.missionvision .box {
+    position: relative;
+    width: calc(400px - 30px);
+    height: calc(400px - 30px);
+    background: orange;
+    float: left;
+    margin: 15px;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.missionvision .box .icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: darkorange;
+    transition: 0.5s;
+    z-index: 1;
+}
+
+.missionvision .box:hover .icon {
+    top: 20px;
+    left: calc(50% - 40px);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+
+}
+
+.missionvision .box .icon .fa {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+    transition: 0.5s;
+    color: #fff;
+}
+
+.missionvision .box:hover .icon .fa {
+    font-size: 40px;
+}
+
+.missionvision .box .content {
+    position: absolute;
+    top: 100%;
+    height: calc(100% - 100px);
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: 0.5s;
+    opacity: 0;
+}
+
+.missionvision .box:hover .content {
+    top: 100px;
+    opacity: 1;
+}
+
+.missionvision .box .content h3 {
+    margin: 0 0 10px;
+    padding: 0;
+    color: #fff;
+    font-size: 24px;
+}
+
+.missionvision .box .content p {
+    margin: 0;
+    padding: 0;
+    color: #fff;
+}
+
+.missionvision .box:nth-child(1) .icon {
+    background: darkorange;
+}
+
+.missionvision .box:nth-child(1) {
+    background: orange;
+}
+
+.missionvision .box:nth-child(2) .icon {
+    background: darkblue;
+}
+
+.missionvision .box:nth-child(2) {
+    background: blue;
+}
+
+/* Shopping Cart */
+.site-slider {
+    position: relative;
+}
+
+.position-top {
+    position: absolute;
+    top: 50%;
+}
+
+.site-slider .slider-btn .prev,
+.site-slider .slider-btn .next {
+    background-color: orange;
+    padding: 1rem 1.5rem;
+    border-radius: 10rem;
+    color: white;
+    margin: 0.1rem;
+    opacity: 0;
+}
+
+.right-0 {
+    right: 0;
+}

@@ -52,7 +52,7 @@
                                 @foreach($Products as $item)
                                 <tr>
                                     <th scope="row">{{$item->id}}</th>
-                                    <td><img width="100%" src="/storage/assets/image/products/{{$item->image}}"></td>
+                                    <td><img width="100%" src="/assets/images/products/{{$item->image}}"></td>
                                     <td>{{$item->product_name}}</td>
                                     <td>{{$item->product_quantity}}</td>
                                     {{-- Need to change category_id (id) to (category_type) using Model --}}
@@ -140,7 +140,7 @@
                     Import Export Products
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('Productsimport') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <label for="exampleInputFile">File input</label>
                         <div class="input-group">
@@ -151,7 +151,7 @@
                         </div>
                         <br>
                         <button class="btn btn-success">Import Products Data</button>
-                        <a class="btn btn-warning" href="{{ route('export') }}">Export Products Data</a>
+                        <a class="btn btn-warning" href="{{ route('Productsexport') }}">Export Products Data</a>
                     </form>
 
                 </div>

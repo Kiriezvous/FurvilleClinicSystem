@@ -29,9 +29,10 @@ Route::resources([
     'types' => 'PetTypeController',
     'breeds' => 'BreedController',
     'events' => 'EventController',
-    'diagnoses' => 'DiagnosesController',
     'clients' => 'User\ClientsController',
-    'patients' => 'PatientController'
+    'patients' => 'PatientController',
+    'diagnosis' => 'DiagnosisController',
+    'online-appointment' => 'FullCalendarController'
 ]);
 
 
@@ -40,13 +41,22 @@ Route::get('appointment', 'FullCalendarController@index');
 Route::get('/load-events', 'EventController@loadEvents')->name('routeloadEvents');
 Route::get('walk-in', 'EventController@create');
 
-Route::get('export', 'MyController@export')->name('export');
-Route::post('import', 'MyController@import')->name('import');
+Route::get('Userexport', 'User\ClientsController@Userexport')->name('Userexport');
+Route::post('Userimport', 'User\ClientsController@Userimport')->name('Userimport');
 
 
-Route::get('export', 'CategoriesController@export')->name('export');
-Route::post('import', 'CategoriesController@import')->name('import');
+Route::get('Categoriesexport', 'CategoriesController@Categoriesexport')->name('Categoriesexport');
+Route::post('Categoriesimport', 'CategoriesController@Categoriesimport')->name('Categoriesimport');
 
-Route::get('export', 'ProductsController@export')->name('export');
-Route::post('import', 'ProductsController@import')->name('import');
+Route::get('Productsexport', 'ProductsController@Productsexport')->name('Productsexport');
+Route::post('Productsimport', 'ProductsController@Productsimport')->name('Productsimport');
+
+Route::get('Patientsexport', 'PatientController@Patientsexport')->name('Patientsexport');
+Route::post('Patientsimport', 'PatientController@Patientsimport')->name('Patientsimport');
+
+Route::get('Doctorsexport', 'User\DoctorController@Doctorsexport')->name('Doctorsexport');
+Route::post('Doctorsimport', 'User\DoctorControlle@Doctorsimport')->name('Doctorsimport');
+
+Route::get('Staffexport', 'User\StaffController@Staffexport')->name('Staffexport');
+Route::post('Staffimport', 'User\StaffController@Staffimport')->name('Staffimport');
 

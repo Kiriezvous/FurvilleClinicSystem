@@ -47,7 +47,7 @@
                 @foreach($listStaff as $staff)
                     <tr>
                         <td>{{$staff->id}}</td>
-                        <td><img width="100px" height="100px" src="/storage/assets/image/users/doctors/{{$staff->image}}"></td>
+                        <td><img width="100px" height="100px" src="assets/images/staff/{{$staff->image}}"></td>
                         <td>{{$staff->name}}</td>
                         <td>{{$staff->email}}</td>
                         <td>
@@ -104,7 +104,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     {{Form::submit('Submit', ['class'=>'btn btn-success'])}}
                     {!! Form::close() !!}
                 </div>
@@ -112,4 +112,27 @@
             </div>
         </div>
     </div>
+
+    <div class="container">
+        <div class="card bg-light mt-3">
+            <div class="card-header">
+                Import Export Doctors Record
+            </div>
+            <div class="card-body">
+                <form action="{{ route('Staffimport') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <label for="exampleInputFile">File input</label>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="exampleInputFile">
+                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                        </div>
+                    </div>
+                    <br>
+                    <button class="btn btn-success">Import Staff Data</button>
+                    <a class="btn btn-warning" href="{{ route('Staffexport') }}">Export Staff Data</a>
+                </form>
+            </div>
+            </div>
+        </div>
 @endsection

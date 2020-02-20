@@ -113,7 +113,7 @@
                 Import Export Categories
             </div>
             <div class="card-body">
-                <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('Categoriesimport') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <label for="exampleInputFile">File input</label>
                     <div class="input-group">
@@ -124,7 +124,7 @@
                     </div>
                     <br>
                     <button class="btn btn-success">Import Categories Data</button>
-                    <a class="btn btn-warning" href="{{ route('export') }}">Export Categories Data</a>
+                    <a class="btn btn-warning" href="{{ route('Categoriesexport') }}">Export Categories Data</a>
                 </form>
 
             </div>
