@@ -57,6 +57,13 @@
                             <input name="complaints" type="text" class="form-control" placeholder="Write your complaints">
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="labresults">Lab Result</label>
+                            <br>
+                            {{Form::file('image')}}
+                        </div>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <div class="float-right">
@@ -88,6 +95,7 @@
                             <td class="th-lg"><b>Doctor Attended</b></td>
                             <th class="th-lg">Diagnosis</th>
                             <th class="th-lg">Complaints</th>
+                            <th class="th-lg">Lab Result</th>
                         </tr>
                         </thead>
                         <!--Table head-->
@@ -100,6 +108,7 @@
                                 <td>{{$item->doctor_attended}}</td>
                                 <td>{{$item->diagnosis}}</td>
                                 <td>{{$item->complaints}}</td>
+                                <td>{{$item->labresults}}</td>
                         @endforeach
                         </tbody>
                         <!--Table body-->

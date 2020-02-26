@@ -14,7 +14,7 @@ Route::group(['prefix'  =>  'admin'], function () {
         Route::get('/', function () {
             Alert::success('Welcome');
             return view('admin.dashboard.index');
-        })->name('admin.dashboard');
+        });
 
     });
 
@@ -32,9 +32,13 @@ Route::resources([
     'clients' => 'User\ClientsController',
     'patients' => 'PatientController',
     'diagnosis' => 'DiagnosisController',
+    'records' => 'RecordsController',
     'online-appointment' => 'FullCalendarController'
 ]);
 
+Route::get('admin', 'Admin\AdminController@index');
+Route::get('dashboard', 'Admin\AdminController@index');
+Route::get('user/profile', 'Admin\ProfileController@index');
 
 //Route::get('appointment', 'EventController@index')->name('index'); //Make it a resource array later
 Route::get('appointment', 'FullCalendarController@index');

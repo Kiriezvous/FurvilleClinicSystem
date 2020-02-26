@@ -9,7 +9,7 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3><i class="fas fa-user-nurse"></i>&nbsp;53 Staff</h3>
+                            <h3><i class="fas fa-user-nurse"></i>&nbsp;{{count($listStaff)}}&nbsp;Staff</h3>
                         </div>
                         <div class="card-footer border-success">
                             <div style="text-align: center;">

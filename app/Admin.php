@@ -35,6 +35,11 @@ class Admin extends Authenticatable
     protected $casts = [
     'email_verified_at' => 'datetime',
 ];
+
+    public static function find($id)
+    {
+    }
+
     /**
      * Add a mutator to ensure hashed passwords
      */

@@ -9,7 +9,8 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3><i class="fas fa-user"></i>&nbsp;Customers</h3>
+
+                            <h3><i class="fas fa-user"></i>&nbsp;{{count($client)}}&nbsp;Customers</h3>
                         </div>
                         <div class="card-footer border-success">
                             <div style="text-align: center;">

@@ -9,7 +9,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
                 <div class="inner">
-                    <h3><i class="fas fa-user-md"></i>&nbsp;53 Doctors</h3>
+                    <h3><i class="fas fa-user-md"></i>&nbsp;{{count($listDoctor)}} Doctors</h3>
                 </div>
                 <div class="card-footer border-success">
                     <div style="text-align: center;">
@@ -133,7 +133,7 @@
                     <button class="btn btn-success">Import Doctors Data</button>
                     <a class="btn btn-warning" href="{{ route('Doctorsexport') }}">Export Doctors Data</a>
                 </form>
-
+            </div>
             </div>
         </div>
 

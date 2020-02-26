@@ -44,4 +44,8 @@ class PagesController extends Controller
     public function shoppingcart() {
         return view('pages.shoppingcart');
     }
+
+    public function contact(){
+        return view('pages.contact');
+}
 }

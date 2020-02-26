@@ -33,6 +33,10 @@
     <script type="text/javascript" src="filthypillow/libs/moment.js"></script>
     <script type="text/javascript" src="filthypillow/libs/jquery.filthypillow.js"></script>
     <link rel="stylesheet" type="text/css" href="filthypillow/jquery.filthypillow.css">
+
+    <!-- Chartist js-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 </head>
 <body>
 <header>
@@ -99,17 +103,6 @@
 </main>
 <script src="/js/app.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
-<script>
-    $(".slider-one")
-    .not(".slick-intialized")
-    .slick({
-       autoplay: true,
-        autoplaySpeed: 3000,
-        dots: true,
-        prevArrow: ".site-slider.slider-btn.prev",
-        nextArrow: ".site-slider.slider-btn.next",
-    });
-</script>
 <script>
 
     $('.carousel').carousel()
