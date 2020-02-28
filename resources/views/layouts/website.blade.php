@@ -72,9 +72,19 @@
             </ul>
 
             @if (Route::has('login'))
-                <div class="top-right links">
+                <div class="top-right links mr-3">
                     @auth
-                        <a href="{{ url('/profile') }}" style="color: white;">Profile</a>
+
+                        <div class="navbar">
+                            <a href="{{ url('/profile') }}" style="color: white;">Profile</a>
+                            <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                            </div>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <button class="dropdown-item" type="button">Setting</button>
+                                <button class="dropdown-item" type="button">Logout</button>
+                            </div>
+                        </div>
                     @else
                         <a href="{{ route('login') }}" style="color: white;">Login</a>
                         @if (Route::has('register'))

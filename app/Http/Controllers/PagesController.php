@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Categories;
 use App\Patients;
 use App\Products;
 use App\Doctor;
@@ -42,7 +43,10 @@ class PagesController extends Controller
     }
 
     public function shoppingcart() {
-        return view('pages.shoppingcart');
+        $posts["Categories"] = Categories::all();
+        $posts["Products"] = Products::all();
+
+        return view('pages.shoppingcart', $posts);
     }
 
     public function contact(){

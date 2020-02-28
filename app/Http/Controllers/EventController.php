@@ -18,6 +18,11 @@ class EventController extends Controller
         return response()->json($events);
     }
 
+    public function show2() {
+        $events = Event::all();
+        return response()->json($events);
+    }
+
     public function create()
     {
         $events = Event::all();
@@ -50,6 +55,7 @@ class EventController extends Controller
 
     public function show($id)
     {
+
     }
 
     public function edit($id)

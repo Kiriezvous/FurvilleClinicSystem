@@ -19,8 +19,13 @@ class Patients extends Model
     }
 
     public function diagnosis(){
-        return $this->belongsTo('App\Diagnosis', 'patient_id');
+        return $this->hasMany('App\Diagnosis', 'patient_id');
     }
+
+    public function records(){
+        return $this->hasMany('App\Records', 'pet_name');
+    }
+
 
     //Import Export
     public $timestamps = false;

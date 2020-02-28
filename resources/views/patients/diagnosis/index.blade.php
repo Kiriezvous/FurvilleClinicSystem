@@ -104,11 +104,11 @@
                         @foreach($Diagnosis as $item)
                             <tr>
                                 <th scope="row">{{$item->id}}</th>
-                                <td>{{$item->patient_id}}</td>
-                                <td>{{$item->doctor_attended}}</td>
+                                <td>{{$item->patient->pet_name}}</td>
+                                <td>{{$item->doctor->name}}</td>
                                 <td>{{$item->diagnosis}}</td>
                                 <td>{{$item->complaints}}</td>
-                                <td>{{$item->labresults}}</td>
+                                <td><img width="100%" src="assets/images/patients/{{$item->labresults}}"></td>
                         @endforeach
                         </tbody>
                         <!--Table body-->

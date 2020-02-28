@@ -55,7 +55,6 @@
                                     <td><img width="100%" src="/assets/images/products/{{$item->image}}"></td>
                                     <td>{{$item->product_name}}</td>
                                     <td>{{$item->product_quantity}}</td>
-                                    {{-- Need to change category_id (id) to (category_type) using Model --}}
                                     <td>{{$item->product->category_type}}</td>
                                     <td>{{$item->product_description}}</td>
                                     <td>{{$item->product_price}}</td>

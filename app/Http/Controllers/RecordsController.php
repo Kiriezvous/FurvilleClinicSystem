@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Diagnosis;
+use App\Patients;
 use Illuminate\Http\Request;
 use App\Records;
 
@@ -9,7 +11,11 @@ class RecordsController extends Controller
 {
     public function index()
     {
-        return view('patients.records.index');
+        $posts["Records"] = Records::all();
+        $posts["Patients"] = Patients::all();
+        $posts["Diagnosis"] = Diagnosis::all();
+
+        return view('patients.records.index', $posts);
     }
 
     public function create()
@@ -42,3 +48,4 @@ class RecordsController extends Controller
         //
     }
 }
+

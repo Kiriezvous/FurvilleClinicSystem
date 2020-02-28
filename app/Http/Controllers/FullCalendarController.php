@@ -41,4 +41,9 @@ class FullCalendarController extends Controller
         //Redirect
         return redirect('/online-appointment')->with('success', 'Post Created');
     }
+
+    public function show() {
+        $events = Event::all();
+        return view('pages.profile')->with('appointments', $events);
+    }
 }
