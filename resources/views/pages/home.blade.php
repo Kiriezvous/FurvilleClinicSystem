@@ -1,52 +1,36 @@
 @extends('layouts.website')
 
 @section('content')
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="/img/banner1.png" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/img/banner2.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/img/banner3.png" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                </div>
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
+{{--    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">--}}
+{{--        <div class="carousel-inner">--}}
+{{--            <div class="carousel-item">--}}
+{{--                <img class="d-block w-100" src="/img/banner1.png" alt="First slide">--}}
+{{--            </div>--}}
+{{--            <div class="carousel-item">--}}
+{{--                <img class="d-block w-100" src="/img/banner2.jpg" alt="Second slide">--}}
+{{--            </div>--}}
+{{--            <div class="carousel-item">--}}
+{{--                <img class="d-block w-100" src="/img/banner3.jpg" alt="Third slide">--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">--}}
+{{--            <span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
+{{--            <span class="sr-only">Previous</span>--}}
+{{--        </a>--}}
+{{--        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">--}}
+{{--            <span class="carousel-control-next-icon" aria-hidden="true"></span>--}}
+{{--            <span class="sr-only">Next</span>--}}
+{{--        </a>--}}
+{{--    </div>--}}
+
 
     <section id="services">
         <div class="container">
             <h1 class="title-about text-center" style="color: white;">About Furville</h1>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 mt-5">
                     <p class="about-description">A veterninary clinic that treats dogs and cats. Furville veterinary clinic offers a lot of services from general wellness and health assessments of pets to minor and major surgeries. Vaccination, deworming, grooming is also part of thier services. We also have pet accessories and merchandises</p>
-                    <span class="float-right"><a href="/about" style="text-decoration: none; color: white;">Check it&nbsp;<i class="fas fa-arrow-circle-right" style="color: white;"></i></a></span>
+                    <span class="float-right"><a href="/about" style="text-decoration: none; color: white;"><h5>Check it&nbsp;<i class="fas fa-arrow-circle-right" style="color: white;"></i></h5></a></span>
                 </div>
                 <div class="col-md-6">
                     <img src="img/home.png" alt="" class="img-fluid">
@@ -62,22 +46,20 @@
         <hr>
         <div class="row ml-2">
             @foreach($Products as $p)
+
             <div class="card">
                 <img src="assets/images/products/{{$p->image}}" class="img-fluid"/>
                 <div class="card-text">
                     <span class="date">Price: {{$p->product_price}}</span>
                     <h2>{{$p->product_name}}</h2>
                 </div>
-                <div class="card-stats">
-                    <div class="stat">
-                    </div>
-                    <div class="stat">
+                <div class="col-12">
+                <div class="card-stats text-justify">
                         <button type="button" class="btn btn-primary">View Product</button>
-                    </div>
-                    <div class="stat">
-                    </div>
+                </div>
                 </div>
             </div>
+
             @endforeach
 
         </div>
@@ -94,8 +76,8 @@
                 @foreach($Services as $s)
                 <div class="col-md-4 services">
                     <img src="img/{{$s->service_type}}" alt="" class="service-img">
-                    <h4>{{$s->service_name}}</h4>
-                    <p>{{$s->service_description}}</p>
+                    <h2>{{$s->service_name}}</h2>
+                    <p style="font-size: 25px">{{$s->service_description}}</p>
                 </div>
                 @endforeach
 
@@ -112,9 +94,9 @@
             <h1 class="title-about text-center">Appointment Furville</h1>
             <div class="row mt-5">
                 <div class="col-md-6 about">
-                    <p class="about-title">Set your Appointment</p>
-                    <p>Hello insert text here</p>
-                    <span class="float-right"><a href="/online-appointment" style="text-decoration: none; color: black;">Check it&nbsp;<i class="fas fa-arrow-circle-right" style="color: black;"></i></a></span>
+                    <p class="service-title">Set your Appointment</p>
+                    <p class="service-description">Hello insert text here</p>
+                    <span class="float-right"><a href="/online-appointment" style="text-decoration: none; color: black;"><h5>Check it&nbsp;<i class="fas fa-arrow-circle-right" style="color: black;"></i></h5></a></span>
                 </div>
                 <div class="col-md-6">
                     <img src="img/appointment.png" alt="" class="img-fluid">

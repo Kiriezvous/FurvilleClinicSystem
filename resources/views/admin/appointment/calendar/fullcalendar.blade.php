@@ -20,11 +20,11 @@
         <div class="wrapper">
 
           <!-- Navbar -->
-          @include('includes.navbar')
+          @include('admin.includes.navbar')
           <!-- /.navbar -->
 
           <!-- Main Sidebar Container -->
-          @include('includes.sidebar')
+          @include('admin.includes.sidebar')
 
           <!-- Content Wrapper. Contains page content -->
           <div class="content-wrapper">
@@ -52,33 +52,6 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="sticky-top mb-3">
-                            {{-- Card --}}
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Draggable Title</h4>
-                                </div>
-                                {{-- Body --}}
-                                <div class="card-body" id="external-events">
-                                    {{-- Event --}}
-                                    <div id="external-events-list">
-                                        <div class="fc-event external-event bg-success">Sample 1</div>
-                                        <div class="fc-event external-event bg-warning">Sample 2</div>
-                                        <div class="fc-event external-event bg-info">Sample 3</div>
-                                        <div class="fc-event external-event bg-primary">Sample 4</div>
-                                        <div class="fc-event external-event bg-danger">Sample 5</div>
-
-                                        <div class="checkbox">
-                                            <label for="drop-remove">
-                                                <input type="checkbox" id="drop-remove">
-                                                remofe after drop
-                                            </label>
-                                        </div>
-                                    </div>
-                                  {{-- End Event --}}
-                                </div>
-                                {{-- End Body --}}
-                            </div>
-                            {{-- End Card --}}
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">Create Event</h3>
@@ -128,7 +101,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        {!! Form::open(['action'=> 'EventController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                        {!! Form::open(['action'=> 'Admin\EventController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                         <div class="form-group">
                             {{Form::label('title', 'Client Name')}}
                             {{Form::text('title', ' ', ['class' => 'form-control', 'placeholder' => 'Title'])}}

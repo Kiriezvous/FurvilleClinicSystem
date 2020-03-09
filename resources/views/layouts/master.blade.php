@@ -31,16 +31,18 @@
 <body class="hold-transition sidebar-mini">
 <div class="wrapper" id="app">
 
+@include('sweetalert::alert')
     <!-- Navbar -->
-@include('includes.navbar')
+@include('admin.includes.navbar')
 <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-@include('includes.sidebar')
+@include('admin.includes.sidebar')
 
 <!-- Content Wrapper. Contains page content -->
 
     <div class="content-wrapper">
+        @include('admin.includes.error')
         @yield('content')
     </div>
 
@@ -48,7 +50,7 @@
     <footer class="main-footer">
      <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      Anything you want
+      ///
     </div>
     <!-- Default to the left -->
     <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
@@ -56,7 +58,7 @@
 </div>
 <!-- ./wrapper -->
 
-@include('sweetalert::alert')
+
 
 <!-- jQuery -->
 <script src="/js/app.js"></script>
@@ -64,7 +66,7 @@
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#datatable').DataTable();
@@ -75,9 +77,26 @@
     $(document).ready(function() {
         $('#staffTable').DataTable();
     } );
+
+$('.delete-confirm').on('click', function (e) {
+click.preventDefault();
+const url = $(this).attr('href');
+swal({
+title: 'Are you sure?',
+text: 'This record and it`s details will be permanantly deleted!',
+icon: 'warning',
+buttons: ["Cancel", "Yes!"],
+}).then(function(value) {
+if (value) {
+window.location.href = url;
+}
+});
+});
 </script>
 
-@yield('js')
+
+
+
 </body>
 
 </html>

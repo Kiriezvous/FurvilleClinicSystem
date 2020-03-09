@@ -11,56 +11,55 @@ Route::group(['prefix'  =>  'admin'], function () {
 
     Route::group(['middleware' => ['auth:admin']], function () {
 
-        Route::get('/', function () {
-            Alert::success('Welcome');
-            return view('admin.dashboard.index');
-        });
+        Route::get('/', 'Admin\AdminController@index')->name('admin.dashboard.index');;
 
+//Route::get('appointment', 'EventController@index')->name('index'); //Make it a resource array later
+        Route::get('appointment', 'Admin\FullCalendarController@index');
+        Route::get('/load-events', 'Admin\EventController@loadEvents')->name('routeloadEvents');
+        Route::get('walk-in', 'Admin\EventController@create');
+
+        Route::get('Userexport', 'Admin\User\ClientsController@Userexport')->name('Userexport');
+        Route::post('Userimport', 'Admin\User\ClientsController@Userimport')->name('Userimport');
+
+        Route::get('Categoriesexport', 'Admin\CategoriesController@Categoriesexport')->name('Categoriesexport');
+        Route::post('Categoriesimport', 'Admin\CategoriesController@Categoriesimport')->name('Categoriesimport');
+
+        Route::get('Productsexport', 'Admin\ProductsController@Productsexport')->name('Productsexport');
+        Route::post('Productsimport', 'Admin\ProductsController@Productsimport')->name('Productsimport');
+
+        Route::get('Patientsexport', 'Admin\PatientController@Patientsexport')->name('Patientsexport');
+        Route::post('Patientsimport', 'Admin\PatientController@Patientsimport')->name('Patientsimport');
+
+        Route::get('Doctorsexport', 'Admin\User\DoctorController@Doctorsexport')->name('Doctorsexport');
+        Route::post('Doctorsimport', 'Admin\User\DoctorController@Doctorsimport')->name('Doctorsimport');
+
+        Route::get('Staffexport', 'Admin\User\StaffController@Staffexport')->name('Staffexport');
+        Route::post('Staffimport', 'Admin\User\StaffController@Staffimport')->name('Staffimport');
+
+        Route::resource('employees', 'Admin\User\StaffController');
+        Route::resource('profile', 'Admin\ProfileController');
+        Route::resource('categories', 'Admin\CategoriesController');
+        Route::resource('doctors', 'Admin\User\DoctorController');
+        Route::resource('products', 'Admin\ProductsController');
+        Route::resource('services', 'Admin\ServicesController');
+        Route::resource('types', 'Admin\PetTypeController');
+        Route::resource('breeds', 'Admin\BreedController');
+        Route::resource('events', 'Admin\EventController');
+        Route::resource('clients', 'Admin\User\ClientsController');
+        Route::resource('patients', 'Admin\PatientController');
+        Route::resource('diagnosis', 'Admin\DiagnosisController');
+        Route::resource('records', 'Admin\RecordsController');
+        Route::resource('walk-in/appointment', 'Admin\FullCalendarController');
+
+        Route::get('pdf', 'Admin\ReportsController@reports')->name('reports.pdf');
+        Route::get('view-pdf', 'Admin\ReportsController@list_view')->name('view.muna');
+
+
+        Route::get('admin-view-pdf', 'Admin\ReportsController@admin_list')->name('doctorsview');
     });
+
 
 });
 
-Route::resources([
-    'categories' => 'CategoriesController',
-    'doctors' => 'User\DoctorController',
-    'employees' => 'User\StaffController',
-    'products' => 'ProductsController',
-    'services' => 'ServicesController',
-    'types' => 'PetTypeController',
-    'breeds' => 'BreedController',
-    'events' => 'EventController',
-    'clients' => 'User\ClientsController',
-    'patients' => 'PatientController',
-    'diagnosis' => 'DiagnosisController',
-    'records' => 'RecordsController',
-    'online-appointment' => 'FullCalendarController'
-]);
 
-Route::get('admin', 'Admin\AdminController@index');
-Route::get('dashboard', 'Admin\AdminController@index');
-Route::get('user/profile', 'Admin\ProfileController@index');
-
-//Route::get('appointment', 'EventController@index')->name('index'); //Make it a resource array later
-Route::get('appointment', 'FullCalendarController@index');
-Route::get('/load-events', 'EventController@loadEvents')->name('routeloadEvents');
-Route::get('walk-in', 'EventController@create');
-
-Route::get('Userexport', 'User\ClientsController@Userexport')->name('Userexport');
-Route::post('Userimport', 'User\ClientsController@Userimport')->name('Userimport');
-
-
-Route::get('Categoriesexport', 'CategoriesController@Categoriesexport')->name('Categoriesexport');
-Route::post('Categoriesimport', 'CategoriesController@Categoriesimport')->name('Categoriesimport');
-
-Route::get('Productsexport', 'ProductsController@Productsexport')->name('Productsexport');
-Route::post('Productsimport', 'ProductsController@Productsimport')->name('Productsimport');
-
-Route::get('Patientsexport', 'PatientController@Patientsexport')->name('Patientsexport');
-Route::post('Patientsimport', 'PatientController@Patientsimport')->name('Patientsimport');
-
-Route::get('Doctorsexport', 'User\DoctorController@Doctorsexport')->name('Doctorsexport');
-Route::post('Doctorsimport', 'User\DoctorControlle@Doctorsimport')->name('Doctorsimport');
-
-Route::get('Staffexport', 'User\StaffController@Staffexport')->name('Staffexport');
-Route::post('Staffimport', 'User\StaffController@Staffimport')->name('Staffimport');
 

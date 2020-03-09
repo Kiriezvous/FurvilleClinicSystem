@@ -49,47 +49,67 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/home">HOME</a>
+                    <h5><a class="nav-link" href="{{route('Home')}}"><b style="color:white;">HOME</b></a></h5>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/about">ABOUT</a>
+                    <h5><a class="nav-link" href="{{route('About')}}"><b style="color:white;">ABOUT</b></a></h5>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/service">SERVICES</a>
+                    <h5><a class="nav-link" href="{{route('Service')}}"><b style="color:white;">SERVICES</b></a></h5>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/online-appointment">APPOINTMENT</a>
+                    <h5><a class="nav-link" href="{{route('Appointment')}}"><b style="color:white;">APPOINTMENT</b></a></h5>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/gallery">GALLERY</a>
+                    <h5><a class="nav-link" href="{{route('Gallery')}}"><b style="color:white;">GALLERY</b></a></h5>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/breeds">BREEDS</a>
+                    <h5><a class="nav-link" href=""><b style="color:white;">BREEDS</b></a></h5>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/shoppingcart">SHOP</a>
+                    <h5><a class="nav-link" href="{{route('ShoppingCart')}}"><b style="color:white;">SHOP</b></a></h5>
                 </li>
             </ul>
 
             @if (Route::has('login'))
                 <div class="top-right links mr-3">
                     @auth
-
+{{--{{route('cart.index')}}--}}
                         <div class="navbar">
-                            <a href="{{ url('/profile') }}" style="color: white;">Profile</a>
+                            <a href="{{route('cart.index')}}">
+                                <h5>
+                                    <span class="nav-item fas fa-cart-plus right badge badge-warning mr-2">
+                                        Cart
+                                        @if(Cart::instance('default')->count() > 0)
+                                        : {{Cart::instance('default')->count()}}
+                                        @endif
+                                    </span>
+                                </h5>
+                            </a>
+                            <h5><a href="{{ url('profile') }}" style="color: white;"><b>Profile</b></a></h5>
                             <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                             </div>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <button class="dropdown-item" type="button">Setting</button>
-                                <button class="dropdown-item" type="button">Logout</button>
+                                <button class="dropdown-item" type="button"><b>Setting</b></button>
+                                <a class="nav-link dropdown-item btn" href="">
+                                    <i class="nav-icon fas fa-power-off"></i>
+
+                                    <P>{{ __('Logout') }}</P>
+                                </a>
                             </div>
                         </div>
                     @else
-                        <a href="{{ route('login') }}" style="color: white;">Login</a>
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                        <h5><a href="{{ route('login') }}" style="color: white;"><b>Login</b></a></h5>
+                            </li>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" style="color: white;">Register</a>
+                                <li class="nav-item">
+                            <h5><a href="{{ route('register') }}" style="color: white;"><b>Register</b></a></h5>
+                                </li>
                         @endif
+                        </ul>
                     @endauth
                 </div>
             @endif
@@ -104,7 +124,7 @@
 
 
 <!-- FOOTER -->
-<footer class="container mt-3">
+<footer class="container mt-3 sticky-bottom">
 
     <p class="float-right"><a href="#">Back to top</a></p>
     <p>&copy; 2017-2018 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
@@ -116,6 +136,10 @@
 <script>
 
     $('.carousel').carousel()
+
+    $('#carouselExampleControls').on('slide.bs.carousel', function () {
+
+    })
 
     $(".gallery").magnificPopup({
         delegate: 'a',

@@ -40,4 +40,8 @@ class User extends Authenticatable
     public function patients(){
         return $this->hasMany('App\Patients', 'user_id');
     }
+
+    public function profile(){
+        return $this->hasMany('App\PetProfile', 'user_id');
+    }
 }

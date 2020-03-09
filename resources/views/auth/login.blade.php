@@ -1,13 +1,7 @@
 @extends('layouts.website')
 
 @section('content')
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="/img/banner1.png" class="d-block"  alt="...">
-            </div>
-        </div>
-    </div>
+
 
 <div class="container mt-5">
     <div class="row justify-content-center">

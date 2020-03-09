@@ -80,6 +80,12 @@
                         </div>
                     </div>
                     <!-- ./col -->
+
+                    <div>
+                        <!-- BUTTON SA VIEW NG PDF -->
+                        <a href="{{route('view.muna')}}">CLICK SA VIEW USER PDF</a>
+                    </div>
+
                 </div>
             </div><!-- /.container-fluid -->
         </div>

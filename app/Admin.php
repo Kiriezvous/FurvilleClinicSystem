@@ -36,15 +36,4 @@ class Admin extends Authenticatable
     'email_verified_at' => 'datetime',
 ];
 
-    public static function find($id)
-    {
-    }
-
-    /**
-     * Add a mutator to ensure hashed passwords
-     */
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
 }

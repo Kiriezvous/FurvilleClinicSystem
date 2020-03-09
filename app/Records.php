@@ -13,4 +13,6 @@ class Records extends Model
     public function diagnosis(){
         return $this->belongsTo('App\Diagnosis', 'diagnosis_id');
     }
+
+
 }

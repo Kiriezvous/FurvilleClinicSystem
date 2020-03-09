@@ -46,16 +46,20 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
+
         $this->validate($request, [
             'email'   => 'required|email',
-            'password' => 'required|min:6'
+            'password' => 'required|min:8'
         ]);
         if (Auth::guard('staff')->attempt([
             'email' => $request->email,
             'password' => $request->password
         ], $request->get('remember'))) {
-            return redirect()->intended(route('staff.dashboard'));
+
+            return redirect()->intended(route('staff.dashboard.index'));
         }
+
+
         return back()->withInput($request->only('email', 'remember'));
     }
 

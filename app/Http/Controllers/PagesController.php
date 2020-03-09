@@ -4,21 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Categories;
 use App\Patients;
+use App\PetType;
 use App\Products;
 use App\Doctor;
-use App\Events;
-
+use App\Event;
+use App\User;
+use Cart;
 use App\Services;
-use DB;
+
 
 class PagesController extends Controller
 {
-    public function profile() {
-        return view('pages.profile');
-    }
+//    public function profile() {
+//        $post["PetType"] = PetType::all();
+//        return view('pages.profile', $post);
+//    }
 
     public function home() {
-        $posts["Products"] = Products::orderBy('id', 'desc')->paginate(6);
+        $posts["Products"] = Products::inRandomOrder('id', 'desc')->paginate(6);
         $posts["Services"] = Services::orderBy('id', 'desc')->paginate(3);
         $posts["Doctors"] = Doctor::orderBy('id', 'desc')->paginate(3);
         $posts["Patients"] = Patients::orderBy('id', 'desc')->paginate(3);

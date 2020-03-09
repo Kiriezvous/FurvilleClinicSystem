@@ -10,33 +10,18 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="/img/slider1.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                </div>
             </div>
             <div class="carousel-item">
                 <img src="/img/slider2.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
             </div>
             <div class="carousel-item">
                 <img src="/img/slider3.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                </div>
             </div>
         </div>
     </div>
 
     <div class="container mt-5">
     <ul class="nav nav-pills mb-3 mr-5 justify-content-center" id="pills-tab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link" id="pills-all-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">All</a>
-        </li>
         @foreach($Categories as $category)
         <li class="nav-item">
             <a class="nav-link" id="pills-{{$category->category_type}}-tab" data-toggle="pill" href="#pills-{{$category->category_type}}" role="tab" aria-controls="pills-home" aria-selected="true">{{$category->category_type}}</a>
@@ -53,13 +38,26 @@
                     @if($type->id == $prod->category_id)
                     <div class="col-md-3">
                         <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="assets/images/products/{{$prod->image}}" alt="Card image cap">
+                            <a href="{{route('shop.show', $prod->product_name)}}"><img class="card-img-top" src="assets/images/products/{{$prod->image}}" alt="Card image cap"></a>
                             <div class="card-body">
                                 <h5 class="card-title">{{$prod->product_name}}</h5>
                                 <p class="card-text"><span class="date">Price: {{$prod->product_price}}</span></p>
-                                <a href="#" class="btn btn-warning"><i class="fas fa-cart-plus">&nbsp;Add Cart</i></a>
-                                <a href="#" class="btn btn-success"><i class="fas fa-shopping-cart">&nbsp;View Cart</i></a>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                <button type="submit" class="btn btn-warning"><i class="fas fa-shopping-cart"></i> BUY NOW</button>
+                                    </div>
 
+                                    <div class="col-md-6">
+                                    {!! Form::open(['action'=> ['CartController@store', $prod->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                                @csrf
+                                    <input type="hidden" name="id" value="{{ $prod->id }}">
+                                    <input type="hidden" name="name" value="{{ $prod->product_name }}">
+                                    <input type="hidden" name="qty" value="{{ $prod->product_quantity }}">
+                                    <input type="hidden" name="price" value="{{ $prod->product_price }}">
+                                    <button type="submit" class="btn btn-success"><i class="fas fa-cart-plus"></i> CART</button>
+                                {!!Form::close()!!}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -17,7 +17,7 @@ class LoginController extends Controller
      * @var string
      */
 
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -48,7 +48,7 @@ class LoginController extends Controller
     {
         $this->validate($request, [
             'email'   => 'required|email',
-            'password' => 'required|min:6'
+            'password' => 'required|min:8'
         ]);
         if (Auth::guard('admin')->attempt([
             'email' => $request->email,

@@ -39,31 +39,25 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-
+    <div class="row justify-content-center mt-5">
+    <h1>About Furville</h1>
+        </hr>
+    </div>
 <div class="row no-gutters bg-light position-relative">
   <div class="col-md-6 mb-md-0 p-md-4">
-  <h1 class="mt-0">About Furville</h1>
-      <p>A veterninary clinic that treats dogs and cats. Furville veterinary clinic offers a lot of services from general wellness and health assessments of pets to minor and major surgeries. Vaccination, deworming, grooming is also part of thier services. We also have pet accessories and merchandises</p>
+
+      <p class="service-description" style="color: black;">A veterninary clinic that treats dogs and cats. Furville veterinary clinic offers a lot of services from general wellness and health assessments of pets to minor and major surgeries. Vaccination, deworming, grooming is also part of thier services. We also have pet accessories and merchandises</p>
   </div>
   <div class="col-md-6 position-static p-4 pl-md-0">
   <img src="img/banner1.png" class="d-block" width="100%" alt="...">
   </div>
 </div>
-{{--<div class="row no-gutters bg-light position-relative">--}}
-{{--  <div class="col-md-6 mb-md-0 p-md-4">--}}
-{{--  <img src="../assets/image/website/location.jpg" class="d-block" width="100%" alt="...">--}}
-{{--  </div>--}}
-{{--  <div class="col-md-6 position-static p-4 pl-md-0">--}}
-{{--  <h3 class="mt-0">Location</h3>--}}
-{{--    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>--}}
-{{--  </div>--}}
-{{--  </div>--}}
 
     <div class="missionvision">
         <div class="box">
             <div class="icon"><i class="fa fa-user" aria-hidden="true"></i></div>
             <div class="content">
-                <h3>Mission</h3>
+                <h1 style="color: white;">Mission</h1>
                 <p>Description</p>
             </div>
         </div>
@@ -81,5 +75,9 @@
                 <p>Description</p>
             </div>
         </div>
+    </div>
+
+    <div class="container">
+        <h1>Our Doctors</h1>
     </div>
 @endsection

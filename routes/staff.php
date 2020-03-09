@@ -8,9 +8,8 @@ Route::group(['prefix'  =>  'staff'], function () {
 
     Route::group(['middleware' => ['auth:staff']], function () {
 
-        Route::get('/', function () {
-            return view('staff.dashboard.index');
-        })->name('staff.dashboard');
+        Route::get('/', 'Staff\StaffController@index')->name('staff.dashboard.index');;
+
 
     });
 

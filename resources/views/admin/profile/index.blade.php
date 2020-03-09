@@ -36,7 +36,7 @@
                             </div>
                     </div>
                                 <div class="col-md-9">
-                                <h3 class="profile-username text-center">Emman Malilay</h3>
+                                <h3 class="profile-username text-center">{{Auth::user()->name}}</h3>
 
                                     <h4><p class="text-muted text-center">ADMIN</p></h4>
 
@@ -45,10 +45,10 @@
                                         <b>Status</b> <span class="badge badge-pill badge-success float-right">Active</span>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Email</b> <a class="float-right">malilayemman@gmail.com</a>
+                                        <b>Email</b> <a class="float-right">{{Auth::user()->email}}</a>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Started last</b> <a class="float-right">January 6, 2020</a>
+                                        <b>Started </b> <a class="float-right">{{Auth::user()->created_at}}</a>
                                     </li>
                                 </ul>
 

@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Products extends Model
 {
+
+    public function scopeMightAlsoLike($query){
+        return $query->inRandomOrder()->paginate(4);
+    }
+
+
     //Import Export
     public $timestamps = false;
     protected $guarded = ['id'];
@@ -18,4 +24,6 @@ class Products extends Model
     public function product(){
         return $this->belongsTo('App\Categories', 'category_id');
     }
+
+
 }
