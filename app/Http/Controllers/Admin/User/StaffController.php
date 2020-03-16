@@ -50,7 +50,7 @@ class StaffController extends Controller
             $fileNameToStore = $fileName.'_'.time().'.'.$extension;
 
             # Upload Image
-            $path = public_path('assets/images/staff/' . $fileNameToStore);
+            $path = public_path('assets/images/' . $fileNameToStore);
 
             # Create original image
             Image::make($request->file('image'))->save($path);
@@ -123,7 +123,7 @@ class StaffController extends Controller
             $fileNameToStore = $fileName.'_'.time().'.'.$extension;
 
             # Upload Image
-            $path = public_path('assets/images/staff/' . $fileNameToStore);
+            $path = public_path('assets/images/' . $fileNameToStore);
 
             # Create original image
             Image::make($request->file('image'))->save($path);

@@ -25,5 +25,7 @@ class Products extends Model
         return $this->belongsTo('App\Categories', 'category_id');
     }
 
-
+    public function suborder(){
+        return $this->belongsTo('App\SubOrder', 'product_id');
+    }
 }

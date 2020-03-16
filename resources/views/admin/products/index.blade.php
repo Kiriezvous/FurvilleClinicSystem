@@ -52,7 +52,7 @@
                                 @foreach($Products as $item)
                                 <tr>
                                     <th scope="row">{{$item->id}}</th>
-                                    <td><img width="200px" height="200px" src="/assets/images/products/{{$item->image}}"></td>
+                                    <td><img width="200px" height="200px" src="/assets/images/{{$item->image}}"></td>
                                     <td>{{$item->product_name}}</td>
                                     <td>{{$item->product_quantity}}</td>
                                     <td>{{$item->product->category_type}}</td>

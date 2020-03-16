@@ -13,20 +13,34 @@
                 <div class="card-body">
                     @include('includes.error')
                     <div class="row">
-
-{{--                            {{dd($prod)}}--}}
-                                @foreach(Cart::content() as $prod)
+                                @foreach(Cart::content($product) as $prod)
                             <div class="col-12 col-md-6">
                                 <h3>{{$prod->name}}</h3>
                                 <div class="col-12">
-                                    <img src="public/assets/images/products/{{$prod->image}}" width="100%" height="60%" class="product-image" alt="Product Image">
+                                    <img src="/assets/images/{{$prod->model->image}}" width="100%" height="60%" class="product-image" alt="Product Image">
                                 </div>
-                                <div class="col-12 col-md-6">
-                                    <h3>{{$prod->qty}}</h3>
-                                </div>
-                                {{$prod->price}}
-                            </div>
 
+                                <div class="row mt-3 ml-2">
+                                <div class="col-md-6">
+                                    <label for="qty">Quantity</label>
+                                    @if($prod->qty > $prod->model->product_quantity)
+                                        {{redirect()->route('cart.index')->with('error', 'It exceeds from the stocks')}}
+                                    @endif
+                                    <form action="{{route('cart.update', $prod->rowId)}}" method="post" role="form">
+                                        {{method_field('PUT')}}
+                                        @csrf
+                                        <input type="hidden" name="prodID" value="{{$prod->id}}">
+                                        <input type="number" size="2" value="{{$prod->qty}}" name="qty" class="form-control">
+
+                                        <input type="submit" class="btn btn-success btn-sm mt-2 mb-2" value="Update">
+                                    </form>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Price</label><br>
+                                {{$prod->price}}
+                                </div>
+                                </div>
+                            </div>
                             <form action="{{route('cart.remove', $prod->rowId)}}" method="POST">
                                 @csrf
                                 {{method_field('DELETE')}}
@@ -42,11 +56,14 @@
 
                     </div>
                     <div class="card-footer">
-                        {{Cart::subtotal()}}
-                        {{Cart::tax()}}
-                        {{Cart::total()}}
-                    </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                Total: PHP <u style="color: red; font-size: 24px;">{{Cart::total()}}</u>
 
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{{route('checkout.index')}}" class="btn btn-primary float-right mt-2">Checkout</a>
                 @else
 
                      <div class="card-header">
@@ -85,7 +102,10 @@
                             <div class="col-12 col-md-6">
                                 <h3>{{$prod->name}}</h3>
                                 <div class="col-12">
-                                    <img src="public/assets/images/products/{{$prod->image}}" width="100%" height="60%" class="product-image" alt="Product Image">
+
+
+                                    <img src="assets/images/{{$product->image}}" width="100%" height="60%" class="product-image" alt="Product Image">
+
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <h3>{{$prod->qty}}</h3>
@@ -134,7 +154,7 @@
                             <div class="card">
                                 <a href="#" class=""></a>
                                 <div class="card-header">
-                                    <img src="/assets/images/products/{{$product->image}}" width="100%" height="60%" class="product-image" alt="Product Image">
+                                    <img src="assets/images/{{$product->image}}" width="100%" height="60%" class="product-image" alt="Product Image">
                                 </div>
                                 <div class="card-body">
                                     <div class="might-like-product-name"><a href="{{route('shop.show', $product->product_name)}}"><h4>{{$product->product_name}}</h4></a></div>

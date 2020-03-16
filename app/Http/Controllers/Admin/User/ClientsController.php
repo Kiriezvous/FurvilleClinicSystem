@@ -43,7 +43,7 @@ class ClientsController extends Controller
             $fileNameToStore = $fileName.'_'.time().'.'.$extension;
 
             # Upload Image
-            $path = public_path('assets/images/customers/' . $fileNameToStore);
+            $path = public_path('assets/images/' . $fileNameToStore);
 
             # Create original image
             Image::make($request->file('image'))->save($path);
@@ -92,9 +92,6 @@ class ClientsController extends Controller
     {
         // Gets the data being create by the User
         $this->validate($request, [
-            'name' => 'required',
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
             'image' => 'image|nullable|max:1999',
 
         ]);
@@ -115,7 +112,7 @@ class ClientsController extends Controller
             $fileNameToStore = $fileName.'_'.time().'.'.$extension;
 
             # Upload Image
-            $path = public_path('assets/images/customers/' . $fileNameToStore);
+            $path = public_path('assets/images/' . $fileNameToStore);
 
             # Create original image
             Image::make($request->file('image'))->save($path);
@@ -125,16 +122,13 @@ class ClientsController extends Controller
 
         //Create the data
         $post = User::find($id);
-        $post->name = $request->input('name');
-        $post->email = $request->input('email');
-        $post->password = Hash::make($post['password']);
         if($request->hasFile('image')) {
             $post->image = $fileNameToStore;
         }
         $post->save();
 
         //Redirect
-        return redirect(route('clients.index'))->with('success', 'Account Created');
+        return back()->with('success', 'Account Updated');
     }
 
     public function destroy($id)

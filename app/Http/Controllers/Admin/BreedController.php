@@ -37,7 +37,7 @@ class BreedController extends Controller
             $fileNameToStore = $fileName.'_'.time().'.'.$extension;
 
             # Upload Image
-            $path = public_path('assets/images/breeds/' . $fileNameToStore);
+            $path = public_path('assets/images/' . $fileNameToStore);
 
             # Create original image
             Image::make($request->file('image'))->save($path);
@@ -82,7 +82,7 @@ class BreedController extends Controller
             $fileNameToStore = $fileName.'_'.time().'.'.$extension;
 
             # Upload Image
-            $path = public_path('assets/images/breeds/' . $fileNameToStore);
+            $path = public_path('assets/images/' . $fileNameToStore);
 
             # Create original image
             Image::make($request->file('image'))->save($path);

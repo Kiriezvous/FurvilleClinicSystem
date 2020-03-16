@@ -47,7 +47,7 @@ class ProductsController extends Controller
             $fileNameToStore = $fileName.'_'.time().'.'.$extension;
 
             # Upload Image
-            $path = public_path('assets/images/products/' . $fileNameToStore);
+            $path = public_path('assets/images/' . $fileNameToStore);
 
             # Create original image
             Image::make($request->file('image'))->save($path);
@@ -99,7 +99,7 @@ class ProductsController extends Controller
             $fileNameToStore = $fileName.'_'.time().'.'.$extension;
 
             # Upload Image
-            $path = public_path('assets/images/products/' . $fileNameToStore);
+            $path = public_path('assets/images/' . $fileNameToStore);
 
             # Create original image
             Image::make($request->file('image'))->save($path);
@@ -132,7 +132,7 @@ class ProductsController extends Controller
         //Image
         if($post->cover_image != 'noimage.jpg'){
             // Delete Image
-            Storage::delete('assets/image/products/'.$post->image);
+            Storage::delete('assets/images/'.$post->image);
         }
 
         // Delete the specific post using the ID user from the database

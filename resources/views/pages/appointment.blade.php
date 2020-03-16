@@ -41,6 +41,7 @@
         </a>
     </div>
 
+    @include('includes.error')
     <div class="container mr-3 mt-5">
         <div class="row">
             <div class="col-md-10">
@@ -56,22 +57,22 @@
                     <div class="row">
                         <div class="col-md-6">
                     <table id="datatable" class="table table-bordered table-striped">
-                        {!! Form::open(['action'=> 'FullCalendarController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                        {!! Form::open(['action'=> 'ReserveController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                         <div class="form-group">
                             {{Form::label('title', 'Client Name')}}
-                            {{Form::text('title', ' ', ['class' => 'form-control', 'placeholder' => 'Title'])}}
+                            {{Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'User Name'])}}
                         </div>
                         <div class="form-group">
                             {{Form::label('start', 'Start Date')}}
-                            {{Form::text('start', ' ', ['class' => 'form-control filthypillow', 'placeholder' => 'Start Date', 'id'=>'start'])}}
-                        </div>
-                        <div class="form-group">
-                            {{Form::label('end', 'End Date')}}
-                            {{Form::text('end', ' ', ['class' => 'form-control filthypillow', 'placeholder' => 'Pick', 'id' => 'end'])}}
+                            <input name="start" type="datetime-local" id="start" class="form-control">
                         </div>
                         <div class="form-group">
                             {{Form::label('color', 'Service Type')}}
-                            {{Form::text('color', ' ', ['class' => 'form-control', 'placeholder' => 'Pick a Color'])}}
+                            <select name="color" class="form-control">
+                                <option value="lightgreen">Check Up</option>
+                                <option value="lightblue">Grooming</option>
+                                <option value="yellow">Other Services</option>
+                            </select>
                         </div>
                         {{Form::submit('Submit', ['class'=>'btn btn-success'])}}
                         {!! Form::close() !!}
@@ -87,5 +88,6 @@
             </div>
         </div>
     </div>
+
 @endsection
 

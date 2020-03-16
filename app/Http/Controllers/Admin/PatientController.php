@@ -54,7 +54,7 @@ class PatientController extends Controller
             $fileNameToStore = $fileName.'_'.time().'.'.$extension;
 
             # Upload Image
-            $path = public_path('assets/images/patients/' . $fileNameToStore);
+            $path = public_path('assets/images/' . $fileNameToStore);
 
             # Create original image
             Image::make($request->file('image'))->save($path);
@@ -112,7 +112,7 @@ class PatientController extends Controller
             $fileNameToStore = $fileName.'_'.time().'.'.$extension;
 
             # Upload Image
-            $path = public_path('assets/images/patients/' . $fileNameToStore);
+            $path = public_path('assets/images/' . $fileNameToStore);
 
             # Create original image
             Image::make($request->file('image'))->save($path);

@@ -35,7 +35,7 @@ class PetTypeController extends Controller
             $extension = $request->file('image')->getClientOriginalExtension();
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
             // Upload Image
-            $path = $request->file('image')->storeAs('public/assets/image/pettypes', $fileNameToStore);
+            $path = $request->file('image')->storeAs('public/assets/images/', $fileNameToStore);
         } else {
             $fileNameToStore = 'noimage.jpg';
         }
@@ -72,7 +72,7 @@ class PetTypeController extends Controller
             $extension = $request->file('image')->getClientOriginalExtension();
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
             // Upload Image
-            $path = $request->file('image')->storeAs('public/assets/image/pettypes', $fileNameToStore);
+            $path = $request->file('image')->storeAs('public/assets/images/', $fileNameToStore);
         }
 
         //Create the Update data

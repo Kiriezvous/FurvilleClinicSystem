@@ -48,7 +48,7 @@
             @foreach($Products as $p)
 
             <div class="card">
-                <img src="assets/images/products/{{$p->image}}" class="img-fluid"/>
+                <img src="assets/images/{{$p->image}}" class="img-fluid"/>
                 <div class="card-text">
                     <span class="date">Price: {{$p->product_price}}</span>
                     <h2>{{$p->product_name}}</h2>
@@ -118,7 +118,7 @@
                     <div class="insider">
                         <div class="doctors">
                             <div class="doctors-img">
-                                <img src="assets/images/doctors/{{$d->image}}" alt="">
+                                <img src="assets/images/{{$d->image}}" alt="">
                             </div>
                             <h4>{{$d->name}}</h4>
                             <p>{{$d->email}}</p>

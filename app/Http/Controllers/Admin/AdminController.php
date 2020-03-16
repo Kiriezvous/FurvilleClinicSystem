@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+
 use App\Http\Controllers\Controller;
 use App\Patients;
 use App\Products;
 use App\User;
+
 
 class AdminController extends Controller
 {
@@ -16,4 +18,5 @@ class AdminController extends Controller
         $data["Patients"] = Patients::all();
         return view('admin.dashboard.index', $data);
     }
+
 }

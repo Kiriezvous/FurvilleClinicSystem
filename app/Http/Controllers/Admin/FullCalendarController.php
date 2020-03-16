@@ -39,7 +39,7 @@ class FullCalendarController extends Controller
 
 
         //Redirect
-        return redirect('/online-appointment')->with('success', 'Post Created');
+        return back()->with('success', 'Post Created');
     }
 
     public function show() {

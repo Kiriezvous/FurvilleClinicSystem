@@ -13,11 +13,6 @@ Route::group(['prefix'  =>  'admin'], function () {
 
         Route::get('/', 'Admin\AdminController@index')->name('admin.dashboard.index');;
 
-//Route::get('appointment', 'EventController@index')->name('index'); //Make it a resource array later
-        Route::get('appointment', 'Admin\FullCalendarController@index');
-        Route::get('/load-events', 'Admin\EventController@loadEvents')->name('routeloadEvents');
-        Route::get('walk-in', 'Admin\EventController@create');
-
         Route::get('Userexport', 'Admin\User\ClientsController@Userexport')->name('Userexport');
         Route::post('Userimport', 'Admin\User\ClientsController@Userimport')->name('Userimport');
 
@@ -37,19 +32,20 @@ Route::group(['prefix'  =>  'admin'], function () {
         Route::post('Staffimport', 'Admin\User\StaffController@Staffimport')->name('Staffimport');
 
         Route::resource('employees', 'Admin\User\StaffController');
-        Route::resource('profile', 'Admin\ProfileController');
+        Route::resource('user', 'Admin\ProfileController');
         Route::resource('categories', 'Admin\CategoriesController');
         Route::resource('doctors', 'Admin\User\DoctorController');
         Route::resource('products', 'Admin\ProductsController');
         Route::resource('services', 'Admin\ServicesController');
         Route::resource('types', 'Admin\PetTypeController');
         Route::resource('breeds', 'Admin\BreedController');
-        Route::resource('events', 'Admin\EventController');
         Route::resource('clients', 'Admin\User\ClientsController');
         Route::resource('patients', 'Admin\PatientController');
         Route::resource('diagnosis', 'Admin\DiagnosisController');
         Route::resource('records', 'Admin\RecordsController');
-        Route::resource('walk-in/appointment', 'Admin\FullCalendarController');
+        Route::resource('schedule', 'Admin\EventController');
+        Route::resource('orders', 'Admin\OrderController');
+
 
         Route::get('pdf', 'Admin\ReportsController@reports')->name('reports.pdf');
         Route::get('view-pdf', 'Admin\ReportsController@list_view')->name('view.muna');

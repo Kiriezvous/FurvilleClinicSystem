@@ -11,7 +11,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{Auth::user()->image}}" class="img-circle elevation-2" alt="User">
+                <img src="/assets/images/{{Auth::user()->image}}" class="img-circle elevation-2" alt="User">
             </div>
             <div class="info">
                 <a href="#" class="d-block">{{Auth::user()->name}}</a>
@@ -32,7 +32,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('profile.index')}}" class="nav-link">
+                    <a href="{{route('user.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             Profile
@@ -50,13 +50,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('appointment.index')}}" class="nav-link">
+                            <a href="{{route('schedule.index')}}" class="nav-link">
                                 <i class="fas fa-calendar-alt"></i>
                                 <p>View Schedule</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('events.create')}}" class="nav-link">
+                            <a href="{{route('schedule.create')}}" class="nav-link">
                                 <i class="fas fa-clock"></i>
                                 <p>Walk in Appointment</p>
                             </a>
@@ -85,6 +85,14 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('orders.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-luggage-cart"></i>
+                        <p>
+                            Customers Order
+                        </p>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{route('services.index')}}" class="nav-link">

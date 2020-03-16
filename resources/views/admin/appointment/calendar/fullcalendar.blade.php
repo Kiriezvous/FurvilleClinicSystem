@@ -26,6 +26,27 @@
           <!-- Main Sidebar Container -->
           @include('admin.includes.sidebar')
 
+
+            <div class="modal fade" id="editAppointment" tabindex="-1" role="dialog" aria-labelledby="titleModal" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="titleModal">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
           <!-- Content Wrapper. Contains page content -->
           <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -48,16 +69,22 @@
 
             <!-- Main content -->
             <section class="content">
+                @include('admin.includes.error')
               <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="sticky-top mb-3">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Create Event</h3>
+                                    <h3>Service Type</h3>
+                                    <div id='external-events-list' class="mt-3">
+                                        <div class="bg-success btn-lg">Check Up</div>
+                                        <div class="bg-primary btn-lg">Grooming</div>
+                                        <div class="bg-warning btn-lg">Other Services</div>
+                                    </div>
                                 </div>
                                 <div class="card-body" data-toggle="modal" data-target="#exampleModal">
-                                    <button type="button" class="btn btn-block btn-primary btn-lg">New Schedule</button>
+                                    <button type="button" class="btn btn-block btn-outline-dark btn-lg">New Schedule</button>
                                 </div>
                             </div>
                         </div>
@@ -66,9 +93,7 @@
                     <div class="col-md-9">
                         <div class="card card-primary">
                             <div class="card-body">
-                            <div id="calendar" data-route-load-events="{{ route('routeloadEvents') }}"></div>
-                            {{-- {!! $calendar->calendar() !!}
-                            {!! $calendar->script() !!} --}}
+                            <div id="calendar"></div>
                             </div>
                         </div>
                     </div>
@@ -108,15 +133,19 @@
                         </div>
                         <div class="form-group">
                             {{Form::label('start', 'Start Date')}}
-                            {{Form::text('start', ' ', ['class' => 'form-control', 'placeholder' => 'Start Date', 'id'=>'start'])}}
+                            <input name="start" type="datetime-local" id="start" class="form-control">
                         </div>
-                        <div class="form-group">
-                            {{Form::label('end', 'End Date')}}
-                            {{Form::text('end', ' ', ['class' => 'form-control', 'placeholder' => 'Pick', 'id' => 'end'])}}
-                        </div>
+{{--                        <div class="form-group">--}}
+{{--                            {{Form::label('end', 'End Date')}}--}}
+{{--                            <input name="end" type="datetime-local" id="end" class="form-control">--}}
+{{--                        </div>--}}
                         <div class="form-group">
                             {{Form::label('color', 'Service Type')}}
-                            {{Form::text('color', ' ', ['class' => 'form-control', 'placeholder' => 'Pick a Color'])}}
+                            <select name="color" class="form-control">
+                                <option value="lightgreen">Check Up</option>
+                                <option value="lightblue">Grooming</option>
+                                <option value="yellow">Other Services</option>
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -137,13 +166,6 @@
       <script src='{{asset ('assets/fullcalendar/packages/timegrid/main.js') }}'></script>
       <script src='{{asset ('assets/fullcalendar/packages/list/main.js') }}'></script>
       <script src='{{asset ('assets/fullcalendar/packages/core/locales-all.js') }}'></script>
-
-      <script>
-      function routeEvents(route) {
-        //alert('Hello');
-        return document.getElementById('calendar').dataset[route];
-      }
-      </script>
 
       <script>
       document.addEventListener('DOMContentLoaded', function() {
@@ -177,25 +199,11 @@
         locales: 'pt-br',
         navlinks: true,
         eventLimit: true,
-        selectable: true,
         editable: true,
-        droppable: true, // this allows things to be dropped onto the calendar
-        drop: function(arg) {
-          // is the "remove after drop" checkbox checked?
-          if (document.getElementById('drop-remove').checked) {
-            // if so, remove the element from the "Draggable Events" list
-            arg.draggedEl.parentNode.removeChild(arg.draggedEl);
-          }
-        },
-        eventDrop: function(event){
-          alert('Added');
-        },
         eventClick: function(event){
-          alert('Clicked');
+          $("#editAppointment").modal('show');
         },
-        eventResize: function(event){
-          alert('Date Adjusted');
-        },
+
         select: function(event){
             // day_last_clicked = $(this);
             current_date = date('y/m/d');
@@ -208,11 +216,12 @@
             "title": "{{ $event->title }}",
             "start": "{{ $event->start }}",
             "end": "{{ $event->end }}",
+            "color" : "{{ $event->color}}",
           },
           @endforeach
         ]
       });
-      //console.log("Hello" + routeEvents('routeloadEvents'));
+
       calendar.render();
     });
 </script>

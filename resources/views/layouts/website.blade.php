@@ -10,16 +10,6 @@
 
     <!-- Admin -->
     <link rel="stylesheet" href="/css/app.css">
-    <!-- Full Calendar -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
-
-    <!-- Data Tables -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
 
     <!-- Date Picker -->
     <link rel="stylesheet" href="/jquery.datetimepicker.css">
@@ -28,15 +18,16 @@
     <!-- Popup Alert -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css">
 
-    <!-- Filthypillow -->
-    <script type="text/javascript" src="filthypillow/libs/jquery.js"></script>
-    <script type="text/javascript" src="filthypillow/libs/moment.js"></script>
-    <script type="text/javascript" src="filthypillow/libs/jquery.filthypillow.js"></script>
-    <link rel="stylesheet" type="text/css" href="filthypillow/jquery.filthypillow.css">
-
     <!-- Chartist js-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
     <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+
+    <link href='{{asset ('assets/fullcalendar/packages/core/main.css') }}' rel='stylesheet'  />
+    <link href='{{asset ('assets/fullcalendar/packages/daygrid/main.css') }}' rel='stylesheet' />
+    <link href='{{asset ('assets/fullcalendar/packages/timegrid/main.css') }}' rel='stylesheet' />
+    <link href='{{asset ('assets/fullcalendar/packages/list/main.css') }}' rel='stylesheet' />
+    <link href='{{asset ('assets/fullcalendar/css/style.css') }}' rel='stylesheet' />
+
 </head>
 <body>
 <header>
@@ -58,13 +49,10 @@
                     <h5><a class="nav-link" href="{{route('Service')}}"><b style="color:white;">SERVICES</b></a></h5>
                 </li>
                 <li class="nav-item">
-                    <h5><a class="nav-link" href="{{route('Appointment')}}"><b style="color:white;">APPOINTMENT</b></a></h5>
+                    <h5><a class="nav-link" href="{{route('appointment.create')}}"><b style="color:white;">APPOINTMENT</b></a></h5>
                 </li>
                 <li class="nav-item">
                     <h5><a class="nav-link" href="{{route('Gallery')}}"><b style="color:white;">GALLERY</b></a></h5>
-                </li>
-                <li class="nav-item">
-                    <h5><a class="nav-link" href=""><b style="color:white;">BREEDS</b></a></h5>
                 </li>
                 <li class="nav-item">
                     <h5><a class="nav-link" href="{{route('ShoppingCart')}}"><b style="color:white;">SHOP</b></a></h5>
@@ -91,11 +79,8 @@
 
                             </div>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <button class="dropdown-item" type="button"><b>Setting</b></button>
-                                <a class="nav-link dropdown-item btn" href="">
-                                    <i class="nav-icon fas fa-power-off"></i>
-
-                                    <P>{{ __('Logout') }}</P>
+                                <a class="nav-link dropdown-item btn" href="{{route('logout')}}">
+                                    <i class="nav-icon fas fa-power-off"></i> {{ __('Logout') }}
                                 </a>
                             </div>
                         </div>
@@ -119,6 +104,7 @@
 </header>
 <main role="main">
 
+@include('sweetalert::alert')
     @yield('content')
 
 
@@ -133,50 +119,18 @@
 </main>
 <script src="/js/app.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
-<script>
 
-    $('.carousel').carousel()
-
-    $('#carouselExampleControls').on('slide.bs.carousel', function () {
-
-    })
-
-    $(".gallery").magnificPopup({
-        delegate: 'a',
-        type: 'image',
-        gallery: {
-            enabled: true
-        }
-    });
-
-    var $fp = $(".filthypillow"),
-        now = moment().subtract("seconds", 1);
-
-    $fp.filthypillow(
-        /*{
-        minDateTime: function( ) {
-        return now;
-        }
-        }*/
-    );
-    $fp.on("focus", function () {
-        $fp.filthypillow("show");
-    });
-    $fp.on("fp:save", function (e, dateObj) {
-        $fp.val(dateObj.format("MMM DD YYYY hh:mm A"));
-        $fp.filthypillow("hide");
-    });
-</script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-{{--<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>--}}
-{{--<script src="../../assets/js/vendor/popper.min.js"></script>--}}
-{{--<script src="../../dist/js/bootstrap.min.js"></script>--}}
-{{--<!-- Just to make our placeholder images work. Don't actually copy the next line! -->--}}
-{{--<script src="../../assets/js/vendor/holder.min.js"></script>'--}}
-{{--<script src="/js/bootstrap-datetimepicker.js"></script>--}}
-{{--<script src="/js/moment-with-locale.js"></script>--}}
+<script src='{{asset ('assets/fullcalendar/packages/core/main.js') }}'></script>
+<script src='{{asset ('assets/fullcalendar/packages/interaction/main.js') }}'></script>
+<script src='{{asset ('assets/fullcalendar/packages/daygrid/main.js') }}'></script>
+<script src='{{asset ('assets/fullcalendar/packages/timegrid/main.js') }}'></script>
+<script src='{{asset ('assets/fullcalendar/packages/list/main.js') }}'></script>
+<script src='{{asset ('assets/fullcalendar/packages/core/locales-all.js') }}'></script>
+
+
 
 
 </body>

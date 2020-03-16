@@ -15,11 +15,6 @@ use App\Services;
 
 class PagesController extends Controller
 {
-//    public function profile() {
-//        $post["PetType"] = PetType::all();
-//        return view('pages.profile', $post);
-//    }
-
     public function home() {
         $posts["Products"] = Products::inRandomOrder('id', 'desc')->paginate(6);
         $posts["Services"] = Services::orderBy('id', 'desc')->paginate(3);
@@ -38,7 +33,8 @@ class PagesController extends Controller
     }
 
     public function appointment() {
-        return view('pages.appointment');
+        $post["Client"] = User::all();
+        return view('pages.appointment', $post);
     }
 
     public function gallery() {
@@ -54,5 +50,9 @@ class PagesController extends Controller
 
     public function contact(){
         return view('pages.contact');
-}
+    }
+
+    public function thankyou(){
+        return view('pages.thankyou');
+    }
 }
