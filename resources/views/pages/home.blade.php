@@ -48,7 +48,7 @@
             @foreach($Products as $p)
 
             <div class="card">
-                <img src="assets/images/{{$p->image}}" class="img-fluid"/>
+                <img src="/assets/images/{{$p->image}}">
                 <div class="card-text">
                     <span class="date">Price: {{$p->product_price}}</span>
                     <h2>{{$p->product_name}}</h2>
@@ -118,7 +118,7 @@
                     <div class="insider">
                         <div class="doctors">
                             <div class="doctors-img">
-                                <img src="assets/images/{{$d->image}}" alt="">
+                                <img src="/assets/images/{{$d->image}}" alt="">
                             </div>
                             <h4>{{$d->name}}</h4>
                             <p>{{$d->email}}</p>
@@ -138,20 +138,20 @@
         <h1>Gallery</h1>
         <div class="border"></div>
         <div class="gallery">
-            <a href="img/g1.jpg" class="image">
-                <img src="img/g1.jpg" alt="">
+            <a href="/img/1-Yuki-After-5792a4b7595c4__700.jpg" class="image">
+                <img src="img/1-Yuki-After-5792a4b7595c4__700.jpg" alt="">
             </a>
-            <a href="img/g2.jpg" class="image">
-                <img src="img/g2.jpg" alt="">
+            <a href="/img/2-Athena_After_square-5792a4731c84a__700.jpg" class="image">
+                <img src="img/2-Athena_After_square-5792a4731c84a__700.jpg" alt="">
             </a>
-            <a href="img/g3.jpg" class="image">
-                <img src="img/g3.jpg" alt="">
+            <a href="/img/3_Teddy_after_square-5792a495096b3__700.jpg" class="image">
+                <img src="img/3_Teddy_after_square-5792a495096b3__700.jpg" alt="">
             </a>
-            <a href="img/g4.jpg" class="image">
-                <img src="img/g4.jpg" alt="">
+            <a href="/img/4-Herman-After-Square-5792a4493f0cf__700.jpg" class="image">
+                <img src="img/4-Herman-After-Square-5792a4493f0cf__700.jpg" alt="">
             </a>
-            <a href="img/g5.jpg" class="image">
-                <img src="img/g5.jpg" alt="">
+            <a href="/img/5-Raider_After-Square-5792a3d1f0e81__700.jpg" class="image">
+                <img src="img/5-Raider_After-Square-5792a3d1f0e81__700.jpg" alt="">
             </a>
         </div>
     </div>

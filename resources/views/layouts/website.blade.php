@@ -119,7 +119,28 @@
 </main>
 <script src="/js/app.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
+<script>
+    $(".slider-one")
+        .not(".slick-intialized")
+        .slick({
+            autoplay: true,
+            autoplaySpeed: 3000,
+            dots: true,
+            prevArrow: ".site-slider.slider-btn.prev",
+            nextArrow: ".site-slider.slider-btn.next",
+        });
+</script>
+<script>
+    $('.carousel').carousel()
 
+    $(".gallery").magnificPopup({
+        delegate: 'a',
+        type: 'image',
+        gallery: {
+            enabled: true
+        }
+    });
+</script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -129,7 +150,6 @@
 <script src='{{asset ('assets/fullcalendar/packages/timegrid/main.js') }}'></script>
 <script src='{{asset ('assets/fullcalendar/packages/list/main.js') }}'></script>
 <script src='{{asset ('assets/fullcalendar/packages/core/locales-all.js') }}'></script>
-
 
 
 

@@ -10,24 +10,12 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="/img/banner1.png" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                </div>
             </div>
             <div class="carousel-item">
                 <img src="/img/banner2.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
             </div>
             <div class="carousel-item">
                 <img src="/img/banner3.png" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                </div>
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
@@ -46,20 +34,35 @@
             <h1>Gallery</h1>
             <div class="border"></div>
             <div class="gallery">
-                <a href="img/g1.jpg" class="image">
-                    <img src="img/g1.jpg" alt="">
+                <a href="/img/1-Yuki-Before-5792a4b2bf291__700.jpg" class="image">
+                    <img src="/img/1-Yuki-Before-5792a4b2bf291__700.jpg" alt="">
                 </a>
-                <a href="img/g2.jpg" class="image">
-                    <img src="img/g2.jpg" alt="">
+                <a href="/img/1-Yuki-After-5792a4b7595c4__700.jpg" class="image">
+                    <img src="/img/1-Yuki-After-5792a4b7595c4__700.jpg" alt="">
                 </a>
-                <a href="img/g3.jpg" class="image">
-                    <img src="img/g3.jpg" alt="">
+                <a href="/img/2-Athena_Before_square-5792a46de9cc2__700.jpg" class="image">
+                    <img src="/img/2-Athena_Before_square-5792a46de9cc2__700.jpg" alt="">
                 </a>
-                <a href="img/g4.jpg" class="image">
-                    <img src="img/g4.jpg" alt="">
+                <a href="/img/2-Athena_After_square-5792a4731c84a__700.jpg" class="image">
+                    <img src="/img/2-Athena_After_square-5792a4731c84a__700.jpg" alt="">
                 </a>
-                <a href="img/g5.jpg" class="image">
-                    <img src="img/g5.jpg" alt="">
+                <a href="/img/3-Teddy_Before_square-5792a49078d6e__700.jpg" class="image">
+                    <img src="/img/3-Teddy_Before_square-5792a49078d6e__700.jpg" alt="">
+                </a>
+                <a href="/img/3_Teddy_after_square-5792a495096b3__700.jpg" class="image">
+                    <img src="/img/3_Teddy_after_square-5792a495096b3__700.jpg" alt="">
+                </a>
+                <a href="/img/4-Herman_Before_Square-5792a445eebf1__700.jpg" class="image">
+                    <img src="/img/4-Herman_Before_Square-5792a445eebf1__700.jpg" alt="">
+                </a>
+                <a href="/img/4-Herman-After-Square-5792a4493f0cf__700.jpg" class="image">
+                    <img src="/img/4-Herman-After-Square-5792a4493f0cf__700.jpg" alt="">
+                </a>
+                <a href="/img/5-Raider-Before_square-5792a3b27fd41__700.jpg" class="image">
+                    <img src="/img/5-Raider-Before_square-5792a3b27fd41__700.jpg" alt="">
+                </a>
+                <a href="/img/5-Raider_After-Square-5792a3d1f0e81__700.jpg" class="image">
+                    <img src="/img/5-Raider_After-Square-5792a3d1f0e81__700.jpg" alt="">
                 </a>
             </div>
         </div>
