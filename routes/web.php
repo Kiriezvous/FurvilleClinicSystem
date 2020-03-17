@@ -20,7 +20,6 @@ require 'staff.php';
 
 Auth::routes();
 
-Route::get('phpdocs', 'PagesController@phpdocs');
 
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
