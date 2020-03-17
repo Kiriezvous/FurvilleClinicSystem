@@ -13,7 +13,7 @@
                 <div class="card-body">
                     @include('includes.error')
                     <div class="row">
-                                @foreach(Cart::content($product) as $prod)
+                                @foreach(Cart::content() as $prod)
                             <div class="col-12 col-md-6">
                                 <h3>{{$prod->name}}</h3>
                                 <div class="col-12">

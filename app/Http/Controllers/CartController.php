@@ -38,7 +38,7 @@ class CartController extends Controller
         Cart::add($request->id, $request->name,1,$request->price )
             ->associate('App\Products');
 
-        return view('pages.cart')->with('success', 'Add the quantity');
+        return back()->with('success', 'Added to Cart');
     }
 
     public function show($id)
@@ -62,7 +62,7 @@ class CartController extends Controller
         $stock = $product->product_quantity;
 
 
-        if($qty > $stock) {
+        if($qty < $stock) {
             if($qty <= 0) {
                 return back()->with('error', 'Your quantity is less than the product inventory');
             }

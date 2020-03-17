@@ -15,6 +15,9 @@ use App\Services;
 
 class PagesController extends Controller
 {
+    public function phpdocs(){
+        return view('phpdocs.index');
+    }
     public function home() {
         $posts["Products"] = Products::inRandomOrder('id', 'desc')->paginate(6);
         $posts["Services"] = Services::orderBy('id', 'desc')->paginate(3);

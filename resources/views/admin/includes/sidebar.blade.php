@@ -184,24 +184,6 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="/status" class="nav-link">
-                        <i class="nav-icon fas fa-chart-line"></i>
-                        <p>
-                            Status
-                            <span class="right badge badge-danger">New</span>
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/reports" class="nav-link">
-                        <i class="nav-icon fas fa-toggle-on"></i>
-                        <p>
-                            Reports
-                            <span class="right badge badge-danger">New</span>
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.logout') }}">
                         <i class="nav-icon fas fa-power-off"></i>
 

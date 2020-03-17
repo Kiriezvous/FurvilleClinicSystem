@@ -81,18 +81,124 @@
                     </div>
                     <!-- ./col -->
 
-                    <div>
-                        <!-- BUTTON SA VIEW NG PDF -->
-                        <a href="{{route('view.muna')}}">CLICK SA VIEW USER PDF</a>
-                    </div>
+{{--                    <div>--}}
+{{--                        <!-- BUTTON SA VIEW NG PDF -->--}}
+{{--                        <a href="{{route('view.muna')}}">CLICK SA VIEW USER PDF</a>--}}
+{{--                    </div>--}}
 
                 </div>
+
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content-header -->
     </div>
 
-    <canvas id="myChart"></canvas>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Sales Chart
+                    </div>
+                    <div class="card-body">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        ABC Analytics Chart
+                    </div>
+                    <div class="card-body">
+                        <canvas id="abcAnalytics"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'line',
+            // The data for our dataset
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                datasets: [{
+                    label: 'Sales Forecasting',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data:
+                        [
+                        @foreach($order_forecast as $sales)
+
+                        {{$sales}}
+                        @endforeach
+                    ]
+
+                }]
+            },
+
+            // Configuration options go here
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                // scale: {
+                //     yAxes: [
+                //         {
+                //             ticks: {
+                //                 beginAtZero: true,
+                //             }
+                //         }
+                //     ]
+                // }
+            }
+        });
+
+        var ctx = document.getElementById('abcAnalytics').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'line',
+            // The data for our dataset
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                datasets: [{
+                    label: 'Product Forecasting',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data:
+                        [
+                            @foreach($order_forecast as $sales)
+
+                            {{$sales}}
+                            @endforeach
+                        ]
+
+                }]
+            },
+
+            // Configuration options go here
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                // scale: {
+                //     yAxes: [
+                //         {
+                //             ticks: {
+                //                 beginAtZero: true,
+                //             }
+                //         }
+                //     ]
+                // }
+            }
+        });
+    </script>
 
 @endsection
 

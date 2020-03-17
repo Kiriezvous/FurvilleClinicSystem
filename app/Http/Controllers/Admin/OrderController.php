@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Order;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class OrderController extends Controller
 {
@@ -15,7 +16,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $post["Orders"] = Order::where('status', '=', 'pending')->get();
+        $post["Orders"] = Order::all();
         return view('admin.orders.index', $post);
     }
 
@@ -55,11 +56,32 @@ class OrderController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function edit($id)
     {
-        //
+        $order = Order::find($id);
+
+        $status = $order->status;
+
+        if($status == 'Pending') {
+            $order->status = "Confirmed";
+            $order->save();
+        } elseif($status == 'Confirmed') {
+            $order->status = "Delivery";
+            $order->save();
+        } elseif($status == 'Delivery') {
+            $order->status = "Completed";
+            $order->save();
+        } elseif($status == "Completed") {
+            $order->status = "Returned";
+            $order->save();
+        } else {
+            Alert::success('Error', 'The order has been completed');
+        }
+
+        // Return to the page
+        return back()->withInput();
     }
 
     /**

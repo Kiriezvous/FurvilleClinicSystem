@@ -9,10 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ReserveController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('guest:web')->except('logout');
-    }
 
     public function index()
     {
@@ -52,6 +48,8 @@ class ReserveController extends Controller
                     $request->end = date('Y-m-d H:i',strtotime('+1 hour +30 minutes',strtotime($request->start)));
                 elseif($request->color == 'yellow')
                     $request->end = date('Y-m-d H:i', strtotime('+30 minutes', strtotime($request->start)));
+                else
+                    return back()->with('error', 'There is an error');
 
         //Create the data
         $post = new Event;

@@ -32,10 +32,12 @@
         </a>
     </div>
 
-    @include('includes.error')
+
     <div class="container mr-3 mt-5">
+
         <div class="row">
             <div class="col-md-10">
+                @include('includes.error')
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">

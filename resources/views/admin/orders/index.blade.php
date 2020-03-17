@@ -46,8 +46,46 @@
                 <td>{{$order->count}}</td>
                 <td>{{$order->address}}</td>
                 <td>{{$order->phone}}</td>
-                <td>{{$order->status}}</td>
-                <td>View Button Here</td>
+                <td>
+                    @if($order->status == 'Pending')
+                            <span class="badge badge-pill badge-warning">Pending</span>
+                        @elseif($order->status == 'Confirmed')
+                            <span class="badge badge-pill badge-success">Confirmed</span>
+                            @elseif($order->status == 'Delivery')
+                            <span class="badge badge-pill badge-primary">Completed</span>
+                                @else
+                                <span class="badge badge-pill badge-danger">Returned</span>
+                    @endif
+                </td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Change Status
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            @if($order->status == 'Pending')
+                                <a class="dropdown-item" href="{{route('orders.edit', $order->id)}}">
+                                    Confirmed
+                                </a>
+                            @elseif($order->status == 'Confirmed')
+                                <a class="dropdown-item"  href="{{route('orders.edit', $order->id)}}">
+                                    Delivery
+                                </a>
+                            @elseif($order->status == 'Delivery')
+                                <a class="dropdown-item"  href="{{route('orders.edit', $order->id)}}">
+                                    Completed
+                                </a>
+                            @elseif($order->status == 'Completed')
+                                <a class="dropdown-item"  href="{{route('orders.edit', $order->id)}}">
+                                    Returned
+                                </a>
+                            @else
+                                <p class="text-center">Order completed</p>
+                            @endif
+                        </div>
+
+                    </div>
+                </td>
 
             </tbody>
             @endforeach
