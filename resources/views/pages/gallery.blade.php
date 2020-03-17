@@ -34,35 +34,35 @@
             <h1>Gallery</h1>
             <div class="border"></div>
             <div class="gallery">
-                <a href="/img/1-Yuki-Before-5792a4b2bf291__700.jpg" class="image">
-                    <img src="/img/1-Yuki-Before-5792a4b2bf291__700.jpg" alt="">
+                <a href="/img/1-Yuki-Before.jpg" class="image">
+                    <img src="/img/1-Yuki-Before.jpg" alt="">
                 </a>
-                <a href="/img/1-Yuki-After-5792a4b7595c4__700.jpg" class="image">
-                    <img src="/img/1-Yuki-After-5792a4b7595c4__700.jpg" alt="">
+                <a href="/img/1-Yuki-After.jpg" class="image">
+                    <img src="/img/1-Yuki-After.jpg" alt="">
                 </a>
-                <a href="/img/2-Athena_Before_square-5792a46de9cc2__700.jpg" class="image">
-                    <img src="/img/2-Athena_Before_square-5792a46de9cc2__700.jpg" alt="">
+                <a href="/img/2-Athena_Before.jpg" class="image">
+                    <img src="/img/2-Athena_Before.jpg" alt="">
                 </a>
-                <a href="/img/2-Athena_After_square-5792a4731c84a__700.jpg" class="image">
-                    <img src="/img/2-Athena_After_square-5792a4731c84a__700.jpg" alt="">
+                <a href="/img/2-Athena_After.jpg" class="image">
+                    <img src="/img/2-Athena_After.jpg" alt="">
                 </a>
-                <a href="/img/3-Teddy_Before_square-5792a49078d6e__700.jpg" class="image">
-                    <img src="/img/3-Teddy_Before_square-5792a49078d6e__700.jpg" alt="">
+                <a href="/img/3-Teddy_Before.jpg" class="image">
+                    <img src="/img/3-Teddy_Before.jpg" alt="">
                 </a>
-                <a href="/img/3_Teddy_after_square-5792a495096b3__700.jpg" class="image">
-                    <img src="/img/3_Teddy_after_square-5792a495096b3__700.jpg" alt="">
+                <a href="/img/3_Teddy_after.jpg" class="image">
+                    <img src="/img/3_Teddy_after.jpg" alt="">
                 </a>
-                <a href="/img/4-Herman_Before_Square-5792a445eebf1__700.jpg" class="image">
-                    <img src="/img/4-Herman_Before_Square-5792a445eebf1__700.jpg" alt="">
+                <a href="/img/4-Herman_Before.jpg" class="image">
+                    <img src="/img/4-Herman_Before.jpg" alt="">
                 </a>
-                <a href="/img/4-Herman-After-Square-5792a4493f0cf__700.jpg" class="image">
-                    <img src="/img/4-Herman-After-Square-5792a4493f0cf__700.jpg" alt="">
+                <a href="/img/4-Herman-After.jpg" class="image">
+                    <img src="/img/4-Herman-After.jpg" alt="">
                 </a>
-                <a href="/img/5-Raider-Before_square-5792a3b27fd41__700.jpg" class="image">
-                    <img src="/img/5-Raider-Before_square-5792a3b27fd41__700.jpg" alt="">
+                <a href="/img/5-Raider-Before.jpg" class="image">
+                    <img src="/img/5-Raider-Before.jpg" alt="">
                 </a>
-                <a href="/img/5-Raider_After-Square-5792a3d1f0e81__700.jpg" class="image">
-                    <img src="/img/5-Raider_After-Square-5792a3d1f0e81__700.jpg" alt="">
+                <a href="/img/5-Raider_After.jpg" class="image">
+                    <img src="/img/5-Raider_After.jpg" alt="">
                 </a>
             </div>
         </div>
