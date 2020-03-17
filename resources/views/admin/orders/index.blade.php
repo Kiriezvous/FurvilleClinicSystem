@@ -37,8 +37,9 @@
             </thead>
             <!--Table head-->
             <!--Table body-->
+            @foreach($Orders as $order)
             <tbody>
-                @foreach($Orders as $order)
+
                 <td>{{$order->id}}</td>
                 <td>{{$order->user_id}}</td>
                 <td>{{$order->name}}</td>
@@ -47,9 +48,9 @@
                 <td>{{$order->phone}}</td>
                 <td>{{$order->status}}</td>
                 <td>View Button Here</td>
-                @endforeach
-            </tbody>
 
+            </tbody>
+            @endforeach
         </table>
     </div>
 @endsection

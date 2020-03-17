@@ -42,8 +42,8 @@ class EventController extends Controller
         if($request->start < $x)
             return back()->with('error', 'The Date is invalid, please schedule from the current date and time');
         else
-            if($x >= $storeClose || $x < $storeOpen)
-                return back()->with('error', 'The store is closed. It opens 9 am to 8 pm.');
+            if($x >= $storeClose || $x <= $storeOpen)
+                return back()->with('error', 'The store is closed. It opens 9 am to 10 pm.');
             else
                 if($request->color == 'lightgreen')
                     $request->end = date('Y-m-d H:i',strtotime('+1 hour',strtotime($request->start)));

@@ -40,7 +40,7 @@ Route::get('contact', 'PagesController@contact');
 Route::get('shop', 'PagesController@shoppingcart')->name('ShoppingCart');
 Route::get('shop/{product}', 'ShopController@show')->name('shop.show');
 Route::post('shop/cart/{product}', 'CartController@store')->name('cart.store');
-Route::put('cart', 'CartController@update')->name('cart.update');
+Route::put('cart/{id}', 'CartController@update')->name('cart.update');
 Route::delete('cart/{product}','CartController@destroy')->name('cart.remove');
 Route::post('shop/wishlist/{product}', 'CartController@wishlist')->name('cart.wishlist');
 Route::get('cart', 'CartController@index')->name('cart.index');

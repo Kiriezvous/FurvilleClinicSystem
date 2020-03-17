@@ -16,6 +16,8 @@ class AdminController extends Controller
         $data["Products"] = Products::all();
         $data["User"] = User::all();
         $data["Patients"] = Patients::all();
+
+
         return view('admin.dashboard.index', $data);
     }
 

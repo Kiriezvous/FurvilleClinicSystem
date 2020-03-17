@@ -18,9 +18,6 @@
     <!-- Popup Alert -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css">
 
-    <!-- Chartist js-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
-    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 
     <link href='{{asset ('assets/fullcalendar/packages/core/main.css') }}' rel='stylesheet'  />
     <link href='{{asset ('assets/fullcalendar/packages/daygrid/main.css') }}' rel='stylesheet' />
@@ -150,8 +147,6 @@
 <script src='{{asset ('assets/fullcalendar/packages/timegrid/main.js') }}'></script>
 <script src='{{asset ('assets/fullcalendar/packages/list/main.js') }}'></script>
 <script src='{{asset ('assets/fullcalendar/packages/core/locales-all.js') }}'></script>
-
-
 
 </body>
 </html>

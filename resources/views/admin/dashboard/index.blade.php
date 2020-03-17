@@ -92,6 +92,7 @@
         <!-- /.content-header -->
     </div>
 
+    <canvas id="myChart"></canvas>
 
 @endsection
 

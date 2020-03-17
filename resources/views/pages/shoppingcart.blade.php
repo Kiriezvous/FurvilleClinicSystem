@@ -38,7 +38,7 @@
                     @if($type->id == $prod->category_id)
                     <div class="col-md-3">
                         <div class="card" style="width: 18rem;">
-                            <a href="{{route('shop.show', $prod->product_name)}}"><img class="card-img-top" src="assets/images/{{$prod->image}}" alt="Card image cap"></a>
+                            <a href="{{route('shop.show', $prod->product_name)}}"><img class="card-img-top" src="/assets/images/{{$prod->image}}" alt="Card image cap"></a>
                             <div class="card-body">
                                 <h5 class="card-title">{{$prod->product_name}}</h5>
                                 <p class="card-text"><span class="date">Price: {{$prod->product_price}}</span></p>

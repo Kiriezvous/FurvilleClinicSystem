@@ -69,7 +69,7 @@ class CheckoutController extends Controller
 
         Cart::destroy();
         Alert::success('Success', 'Your order has been placed');
-        return redirect('pages.thankyou');
+        return view('pages.thankyou');
     }
 
     public function show($id)

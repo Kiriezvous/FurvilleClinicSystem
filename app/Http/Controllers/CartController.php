@@ -38,7 +38,7 @@ class CartController extends Controller
         Cart::add($request->id, $request->name,1,$request->price )
             ->associate('App\Products');
 
-        return view('cart.index')->with('success', 'Add the quantity');
+        return view('pages.cart')->with('success', 'Add the quantity');
     }
 
     public function show($id)
@@ -53,9 +53,12 @@ class CartController extends Controller
 
     public function update(Request $request, $id)
     {
+        //dd($request->all());
+
         $qty = $request->qty;
-        $proID = $request->proID;
-        $product = Products::findOrFail($proID);
+        $prodID = $request->prodID;
+        //dd(Cart::content());
+        $product = Products::findOrFail($prodID);
         $stock = $product->product_quantity;
 
 
@@ -64,6 +67,7 @@ class CartController extends Controller
                 return back()->with('error', 'Your quantity is less than the product inventory');
             }
             Cart::update($id, $request->qty);
+
             return back()->with('success', 'Quantity updated');
         } else {
             return back()->with('error', 'Your quantity is more than the product inventory');

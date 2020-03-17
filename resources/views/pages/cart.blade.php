@@ -23,10 +23,7 @@
                                 <div class="row mt-3 ml-2">
                                 <div class="col-md-6">
                                     <label for="qty">Quantity</label>
-                                    @if($prod->qty > $prod->model->product_quantity)
-                                        {{redirect()->route('cart.index')->with('error', 'It exceeds from the stocks')}}
-                                    @endif
-                                    <form action="{{route('cart.update', $prod->rowId)}}" method="post" role="form">
+                                    <form action="{{route('cart.update', $prod->rowId)}}" method="POST" role="form">
                                         {{method_field('PUT')}}
                                         @csrf
                                         <input type="hidden" name="prodID" value="{{$prod->id}}">
@@ -35,10 +32,14 @@
                                         <input type="submit" class="btn btn-success btn-sm mt-2 mb-2" value="Update">
                                     </form>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                     <label>Price</label><br>
                                 {{$prod->price}}
                                 </div>
+                                    <div class="col-md-3">
+                                        <label for="subtotal">Subtotal</label>
+                                        {{Cart::subtotal()}}
+                                    </div>
                                 </div>
                             </div>
                             <form action="{{route('cart.remove', $prod->rowId)}}" method="POST">
@@ -104,7 +105,7 @@
                                 <div class="col-12">
 
 
-                                    <img src="assets/images/{{$product->image}}" width="100%" height="60%" class="product-image" alt="Product Image">
+                                    <img src="{{asset('/assets/images/{{$product->image')}}" width="100%" height="60%" class="product-image" alt="Product Image">
 
                                 </div>
                                 <div class="col-12 col-md-6">
