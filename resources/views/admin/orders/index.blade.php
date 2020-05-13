@@ -52,9 +52,11 @@
                         @elseif($order->status == 'Confirmed')
                             <span class="badge badge-pill badge-success">Confirmed</span>
                             @elseif($order->status == 'Delivery')
-                            <span class="badge badge-pill badge-primary">Completed</span>
-                                @else
+                            <span class="badge badge-pill badge-primary">Delivery</span>
+                                @elseif($order->status == "Returned")
                                 <span class="badge badge-pill badge-danger">Returned</span>
+                                    @elseif($order->status == "Completed")
+                                    <span class="badge badge-pill badge-info">Completed</span>
                     @endif
                 </td>
                 <td>
@@ -73,14 +75,12 @@
                                 </a>
                             @elseif($order->status == 'Delivery')
                                 <a class="dropdown-item"  href="{{route('orders.edit', $order->id)}}">
-                                    Completed
-                                </a>
-                            @elseif($order->status == 'Completed')
-                                <a class="dropdown-item"  href="{{route('orders.edit', $order->id)}}">
                                     Returned
                                 </a>
-                            @else
-                                <p class="text-center">Order completed</p>
+                            @elseif($order->status == 'Returned')
+                                <a class="dropdown-item"  href="{{route('orders.edit', $order->id)}}">
+                                    Completed
+                                </a>
                             @endif
                         </div>
 

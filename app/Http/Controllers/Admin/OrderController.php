@@ -70,14 +70,14 @@ class OrderController extends Controller
         } elseif($status == 'Confirmed') {
             $order->status = "Delivery";
             $order->save();
-        } elseif($status == 'Delivery') {
-            $order->status = "Completed";
-            $order->save();
-        } elseif($status == "Completed") {
+        } elseif($status == "Delivery") {
             $order->status = "Returned";
             $order->save();
+        }elseif ($status == 'Returned') {
+            $order->status = "Completed";
+            $order->save();
         } else {
-            Alert::success('Error', 'The order has been completed');
+            Alert::error('Error', 'Your process is undefined');
         }
 
         // Return to the page

@@ -9,6 +9,7 @@ use App\Patients;
 use App\Products;
 use App\SubOrder;
 use App\User;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class AdminController extends Controller
@@ -19,6 +20,75 @@ class AdminController extends Controller
         $data["User"] = User::all();
         $data["Patients"] = Patients::all();
         $data["SubOrders"] = SubOrder::all();
+
+
+        $inventory = Products::where('product_quantity', '<=', '10')->get();
+
+
+
+        $subOrder = SubOrder::all();
+        $product_array = array();
+
+        $subArray = array();
+        $subQTY = array();
+        $subPrice = array();
+
+        foreach($subOrder as $s) {
+            array_push($subArray, $s->product_id);
+            array_push($subQTY, $s->qty);
+            array_push($subPrice, $s->price);
+            $product = Products::where('id', $s->product_id)->get();
+
+            foreach($product as $p) {
+                array_push($product_array, $p->product_name);
+            }
+        }
+
+        $totalcost = array();
+
+        for($i = 0; $i < count($subOrder); $i++) {
+            array_push($totalcost, $subQTY[$i] * $subPrice[$i]);
+        }
+
+//        dd($totalcost);
+
+        $overalltotal = array_sum($totalcost);
+
+//        dd($overalltotal);
+        $percentagetotalcost = array();
+
+
+
+        for($i = 0; $i < count($subOrder); $i++) {
+            $value = $totalcost[$i] / $overalltotal;
+            $value = $value * 100;
+            array_push($percentagetotalcost, $value);
+        }
+
+
+        sort($percentagetotalcost);
+//        dd($percentagetotalcost);
+
+        $cmpercentage = array_sum($percentagetotalcost);
+
+        $category = array();
+
+        for($i = 0; $i < count($subOrder); $i++) {
+            if($percentagetotalcost[$i] >= 50) {
+                $categorize = "Category A";
+            } else if($percentagetotalcost[$i]  >= 35) {
+                $categorize = "Category B";
+            } else {
+                $categorize = "Category C";
+            }
+
+            //dd($percentagetotalcost);
+            array_push($category, $categorize);
+        }
+
+     //   dd($subOrder, $subPrice, $subQTY, $totalcost, $overalltotal, $percentagetotalcost, $cmpercentage);
+
+
 
         $months = array(
             1 => 'January',
@@ -91,14 +161,38 @@ class AdminController extends Controller
 
         $user_input = 0;
 
+
         $forecasted = trader_sma($total_sales, (count($total_sales) - $user_input));
-//        ->wtih('order_forecast', $order_forecast)
+//        ->with('order_forecast', $order_forecast);
 //            ->with('forecasted', $forecasted)
 
+//        ABC
+
+
+
+        // Get Orders Pending
+        $order_month = Order::where('status', 'Confirmed')->get();
+        $store_order = array();
+
+        foreach($order_month as $order_all) {
+            array_push($store_order, date('Y-m', strtotime($order_all->created_at)));
+        }
+
+        //dd(count(array_reverse($percentagetotalcost)));
+
+        //dd($total_sales);
 
         return view('admin.dashboard.index', $data)
             ->with('total_order_sales', $total_order_sales)
-            ->with('order_forecast', $forecasted);
+            ->with('order_forecast', $forecasted)
+            ->with('totalsales', $total_sales)
+            ->with('categorize', $category)
+            ->with('totalcosting', $totalcost)
+            ->with('percentage', $cmpercentage)
+            ->with('order', $store_order)
+            ->with('cm', $percentagetotalcost)
+            ->with('overalltotalcost', $overalltotal)
+            ->with('stocks', $inventory);
 
     }
 

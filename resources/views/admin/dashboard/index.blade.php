@@ -18,7 +18,11 @@
                     </div><!-- /.col -->
                 </div><!-- /.row -->
 
-
+                <div class="card text-white bg-danger">
+                    <div class="card-body">
+                        You have {{count($stocks)}} stocks running low. Please check your <a href="{{route('products.index')}}" class="btn btn-dark">inventory</a> !
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-lg-3 col-6">
                         <!-- small box -->
@@ -69,7 +73,7 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>0</h3>
+                                <h3>{{count($SubOrders)}}</h3>
 
                                 <p>Orders</p>
                             </div>
@@ -81,10 +85,10 @@
                     </div>
                     <!-- ./col -->
 
-{{--                    <div>--}}
-{{--                        <!-- BUTTON SA VIEW NG PDF -->--}}
-{{--                        <a href="{{route('view.muna')}}">CLICK SA VIEW USER PDF</a>--}}
-{{--                    </div>--}}
+                    {{--                    <div>--}}
+                    {{--                        <!-- BUTTON SA VIEW NG PDF -->--}}
+                    {{--                        <a href="{{route('view.muna')}}">CLICK SA VIEW USER PDF</a>--}}
+                    {{--                    </div>--}}
 
                 </div>
 
@@ -95,7 +99,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col">
                 <div class="card">
                     <div class="card-header">
                         Sales Chart
@@ -105,7 +109,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col">
                 <div class="card">
                     <div class="card-header">
                         ABC Analytics Chart
@@ -118,69 +122,50 @@
         </div>
     </div>
 
-
-
-
+{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>--}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script>
 
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var chart = new Chart(ctx, {
+        var ctx2 = document.getElementById('myChart').getContext('2d');
+        var chart2 = new Chart(ctx2, {
             // The type of chart we want to create
             type: 'line',
             // The data for our dataset
             data: {
                 labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                 datasets: [{
-                    label: 'Sales Forecasting',
-                    backgroundColor: 'rgb(255, 99, 132)',
+                    label: 'Sales',
                     borderColor: 'rgb(255, 99, 132)',
                     data:
                         [
-                        @foreach($order_forecast as $sales)
 
-                        {{$sales}}
-                        @endforeach
-                    ]
+                            @foreach($totalsales as $sales)
 
-                }]
-            },
-
-            // Configuration options go here
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                // scale: {
-                //     yAxes: [
-                //         {
-                //             ticks: {
-                //                 beginAtZero: true,
-                //             }
-                //         }
-                //     ]
-                // }
-            }
-        });
-
-        var ctx = document.getElementById('abcAnalytics').getContext('2d');
-        var chart = new Chart(ctx, {
-            // The type of chart we want to create
-            type: 'line',
-            // The data for our dataset
-            data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                datasets: [{
-                    label: 'Product Forecasting',
-                    backgroundColor: 'rgb(255, 99, 132)',
-                    borderColor: 'rgb(255, 99, 132)',
-                    data:
-                        [
-                            @foreach($order_forecast as $sales)
-
-                            {{$sales}}
+                            {{$sales}},
                             @endforeach
+
+
                         ]
 
+                }, {
+                    label: 'Forecasted',
+                    borderColor: 'rgb(255, 360, 0)',
+                    data:
+                        [
+                            0,
+                            @foreach($totalsales as $sales)
+
+                            {{$sales}},
+                            @endforeach
+                            @foreach($order_forecast as $s)
+
+                            {{$s}},
+                            @endforeach
+
+
+                        ]
                 }]
+
             },
 
             // Configuration options go here
@@ -198,7 +183,45 @@
                 // }
             }
         });
-    </script>
 
+        var ctx1 = document.getElementById('abcAnalytics').getContext('2d');
+        var chart1 = new Chart(ctx1, {
+            // The type of chart we want to create
+            type: 'line',
+            // The data for our dataset
+            data: {
+                labels: [0,
+                    @foreach($cm as $p)
+                    {{$p}},
+                    @endforeach
+                        100],
+                datasets: [{
+                    label: 'Product Forecasting',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data:
+
+                        [
+                            0,
+                            @foreach($cm as $p)
+                            {{$p}},
+                            @endforeach
+100
+                        ],
+
+
+                }]
+            },
+
+            // Configuration options go here
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                yAxes: {
+                  reverse: true,
+                },
+            }
+        });
+
+    </script>
 @endsection
 
