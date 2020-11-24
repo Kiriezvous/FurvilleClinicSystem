@@ -111,7 +111,7 @@
                                      alt="Profile picture">
                             </div>
 
-                            <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
+                            <h3 class="profile-username text-center">{{ Auth::user()->fname }}&nbsp;{{ Auth::user()->lname }}</h3>
 
                             <p class="text-muted text-center">{{ Auth::user()->email }}</p>
                         </div>
@@ -122,11 +122,36 @@
                     </div>
                     <!-- /.card -->
 
+                    <button type="button" class="btn btn-secondary btn-lg btn-block" data-toggle="modal" data-target="#updateInfo">
+                        Edit your information
+                    </button>
+                    <br>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="updateInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Update your profile</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- About Me Box -->
                     <div class="card card-warning">
                         <div class="card-header">
-                            <h3 class="card-title">{{ Auth::user()->name }}'s Pets</h3>
+                            <h3 class="card-title">{{ Auth::user()->fname }}'s Pets</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -237,6 +262,28 @@
                                 <div class="card-body">
 
                                     <div id="calendar"></div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-text-width"></i>
+                                        Appointment Payment Status
+                                    </h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    @foreach($Events as $event)
+
+                                        @if(Auth::user()->name == $event->title)
+{{--                                            <p>"You have an appointment @if($event->color == "lightgreen") Check up @elseif($event->color == "lightblue") Grooming @else Other Service @endif in the clinic, please be on time.", </p>--}}
+                                            Your appointment for <b>{{$event->start = date('M d, Y h:i A',strtotime($event->start))}}</b> is <b style="color: red">{{$event->status}}</b>.  Pay here.
+                                        <hr>
+                                        @endif
+                                    @endforeach
                                 </div>
                                 <!-- /.card-body -->
                             </div>
@@ -473,7 +520,7 @@
                         @foreach($Events as $event)
                     {
                         @if(Auth::user()->name == $event->title)
-                        "title": "You have an appointment @if($event->color == "lightgreen") Check up @elseif($event->color == "lightblue") Grooming @else Other Service @endif in the clinic, please be on time",
+                        "title": "You have an appointment @if($event->color == "lightgreen") Check up @elseif($event->color == "lightblue") Grooming @else Other Service @endif in the clinic, please be on time.",
                         "start": "{{$event->start}}",
                         "end": "{{$event->end}}",
                         "color": "{{$event->color}}",

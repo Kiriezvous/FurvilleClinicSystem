@@ -9,7 +9,6 @@
                 </div> <!-- /.card-body -->
                 <div class="card-body">
                     <table id="datatable" class="table table-bordered table-striped">
-                        <h1>Walk-in Appointments</h1>
                         {!! Form::open(['action'=> 'Admin\EventController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                         <div class="form-group">
                             {{Form::label('title', 'Client Name')}}
@@ -17,11 +16,21 @@
                         </div>
                         <div class="form-group">
                             {{Form::label('start', 'Start Date')}}
-                            <input name="start" type="datetime-local" id="start" class="form-control">
+                            <input name="start" type="date" id="start" class="form-control">
                         </div>
                         <div class="form-group">
-                            {{Form::label('end', 'End Date')}}
-                            <input name="end" type="datetime-local" id="end" class="form-control">
+                            {{Form::label('time', 'Time slot')}}
+                            <select name="time" class="form-control">
+                                <option value="1">09:00 AM - 10:00 AM</option>
+                                <option value="2">10:00 AM - 11:00 AM</option>
+                                <option value="3">11:00 AM - 12:00 PM</option>
+                                <option value="4">12:00 PM - 13:00 PM</option>
+                                <option value="5">13:00 PM - 14:00 PM</option>
+                                <option value="6">14:00 PM - 15:00 PM</option>
+                                <option value="7">15:00 PM - 16:00 PM</option>
+                                <option value="8">16:00 PM - 17:00 PM</option>
+                                <option value="9">17:00 PM - 18:00 PM</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             {{Form::label('color', 'Service Type')}}

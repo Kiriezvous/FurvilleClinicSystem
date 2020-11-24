@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-
 use App\Http\Controllers\Controller;
 use App\Order;
 use App\Patients;
@@ -10,7 +9,6 @@ use App\Products;
 use App\SubOrder;
 use App\User;
 use RealRashid\SweetAlert\Facades\Alert;
-
 
 class AdminController extends Controller
 {
@@ -21,10 +19,7 @@ class AdminController extends Controller
         $data["Patients"] = Patients::all();
         $data["SubOrders"] = SubOrder::all();
 
-
         $inventory = Products::where('product_quantity', '<=', '10')->get();
-
-
 
         $subOrder = SubOrder::all();
         $product_array = array();
@@ -57,14 +52,11 @@ class AdminController extends Controller
 //        dd($overalltotal);
         $percentagetotalcost = array();
 
-
-
         for($i = 0; $i < count($subOrder); $i++) {
             $value = $totalcost[$i] / $overalltotal;
             $value = $value * 100;
             array_push($percentagetotalcost, $value);
         }
-
 
         sort($percentagetotalcost);
 //        dd($percentagetotalcost);
@@ -87,8 +79,6 @@ class AdminController extends Controller
         }
 
      //   dd($subOrder, $subPrice, $subQTY, $totalcost, $overalltotal, $percentagetotalcost, $cmpercentage);
-
-
 
         $months = array(
             1 => 'January',
@@ -139,7 +129,6 @@ class AdminController extends Controller
 
 //        dd($order_forecast);
 
-
 // ----------------------------------------------------------------------------- //
 
         // Dynamic Data
@@ -167,8 +156,6 @@ class AdminController extends Controller
 //            ->with('forecasted', $forecasted)
 
 //        ABC
-
-
 
         // Get Orders Pending
         $order_month = Order::where('status', 'Confirmed')->get();
