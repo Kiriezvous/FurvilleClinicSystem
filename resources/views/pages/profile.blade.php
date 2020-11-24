@@ -97,6 +97,7 @@
 <main role="main">
     <!-- Main content -->
     <section class="content">
+        <div class="container">
         <div class="container-fluid">
             @include('includes.error')
             <div class="row">
@@ -365,6 +366,7 @@
 
             </div>
         </div><!-- /.container-fluid -->
+        </div>
     </section>
     <!-- /.content -->
 
