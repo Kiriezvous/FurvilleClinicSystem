@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\Order;
 use App\Patients;
 use App\PetProfile;
 use App\PetType;
@@ -26,6 +27,7 @@ class PetProfileController extends Controller
         $post["Users"] = User::all();
         $post["Pet"] = PetProfile::all();
         $post["Events"] = Event::all();
+        $post["Orders"] = auth()->user()->orders()->orderBy('created_at', 'desc')->get();
         return view('pages.profile', $post);
     }
 

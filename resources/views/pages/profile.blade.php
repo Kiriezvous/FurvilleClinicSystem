@@ -298,7 +298,9 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-
+                                    @foreach($Orders as $order)
+                                        <h3>{{$order->id}} | {{$order->name}} | {{$order->status}} | {{$order->count}}</h3>
+                                    @endforeach
                                 </div>
                                 <!-- /.card-body -->
                             </div>

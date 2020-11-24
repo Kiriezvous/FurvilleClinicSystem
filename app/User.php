@@ -44,4 +44,10 @@ class User extends Authenticatable
     public function profile(){
         return $this->hasMany('App\PetProfile', 'user_id');
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
 }

@@ -51,7 +51,7 @@
                         <div class="form-group col-md-6">
                             <label for="city">City</label>
 {{--                            <input type="text" class="form-control" id="city" name="city" placeholder="Enter City">--}}
-                            <select name="time" class="form-control">
+                            <select name="city" class="form-control">
                                 <option value="Caloocan">Caloocan</option>
                                 <option value="Las Pinas">Las Pinas</option>
                                 <option value="Makati">Makati</option>

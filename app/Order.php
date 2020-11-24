@@ -9,4 +9,8 @@ class Order extends Model
     public function suborder(){
         return $this->belongsTo('App\SubOrder', 'order_id');
     }
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }
