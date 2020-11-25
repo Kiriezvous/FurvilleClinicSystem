@@ -28,13 +28,13 @@
 <div class="wrapper" id="app">
 
 @include('sweetalert::alert')
-    <!-- Navbar -->
+<!-- Navbar -->
 @include('admin.includes.navbar')
 <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
 
-@include('admin.includes.sidebar')
+@include('doctor.includes.sidebar')
 
 <!-- Content Wrapper. Contains page content -->
 
@@ -45,13 +45,13 @@
 
     <!-- Main Footer -->
     <footer class="main-footer">
-     <!-- To the right -->
-    <div class="float-right d-none d-sm-inline">
-      ///
-    </div>
-    <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-  </footer>
+        <!-- To the right -->
+        <div class="float-right d-none d-sm-inline">
+            ///
+        </div>
+        <!-- Default to the left -->
+        <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    </footer>
 </div>
 <!-- ./wrapper -->
 
