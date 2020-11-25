@@ -33,6 +33,7 @@
                 <th class="th-lg">Contact Number</th>
                 <th class="th-lg">Status</th>
                 <th class="th-lg">Actions</th>
+                <th class="th-lg">Proof Image</th>
             </tr>
             </thead>
             <!--Table head-->
@@ -86,8 +87,35 @@
 
                     </div>
                 </td>
-
+                <td>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#payment{{$order->id}}">
+                        View
+                    </button>
+                </td>
             </tbody>
+            @endforeach
+
+            @foreach($Orders as $order)
+                <!-- Modal -->
+                <div class="modal fade" id="payment{{$order->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <img id="img" class="img-fluid rounded mx-auto d-block" src="/assets/images/{{$order->proof_image}}" alt="Proof">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             @endforeach
         </table>
     </div>

@@ -46,6 +46,8 @@ Route::delete('cart/{product}','CartController@destroy')->name('cart.remove');
 Route::post('shop/wishlist/{product}', 'CartController@wishlist')->name('cart.wishlist');
 Route::get('cart', 'CartController@index')->name('cart.index');
 
+// Add Proof Image
+Route::put('/proof/{id}/upload', 'AddProofController@upload')->name('proof.upload');
 
 // Wishlist Controller
 Route::delete('movetocart/{product}','CartController@destroyWishlist')->name('cart.removeWishlist');

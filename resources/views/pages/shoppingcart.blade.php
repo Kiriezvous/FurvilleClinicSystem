@@ -38,7 +38,17 @@
                                 <p class="card-text"><span class="date">Price: {{$prod->product_price}}</span></p>
                                 <div class="row">
                                     <div class="col-md-6">
-                                <button type="submit" class="btn btn-warning"><i class="fas fa-shopping-cart"></i> BUY NOW</button>
+
+                                        {!! Form::open(['action'=> ['CartController@store', $prod->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $prod->id }}">
+                                        <input type="hidden" name="name" value="{{ $prod->product_name }}">
+                                        <input type="hidden" name="qty" value="{{ $prod->product_quantity }}">
+                                        <input type="hidden" name="price" value="{{ $prod->product_price }}">
+                                        {{Form::hidden('buynow', 1)}}
+                                        <button type="submit" class="btn btn-warning"><i class="fas fa-shopping-cart"></i> BUY NOW</button>
+                                        {!!Form::close()!!}
+
                                     </div>
 
                                     <div class="col-md-6">

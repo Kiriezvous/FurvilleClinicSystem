@@ -38,6 +38,10 @@ class CartController extends Controller
         Cart::add($request->id, $request->name,1,$request->price )
             ->associate('App\Products');
 
+        if($request->buynow == 1) {
+            return redirect()->route('cart.index');
+        }
+
         return back()->with('success', 'Added to Cart');
     }
 

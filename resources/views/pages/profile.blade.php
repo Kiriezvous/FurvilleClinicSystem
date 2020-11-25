@@ -300,8 +300,31 @@
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     @foreach($Orders as $order)
-                                        <h3>{{$order->id}} | {{$order->name}} | {{$order->status}} | {{$order->count}}</h3>
+
+                                        @if($order->payment_method == "cod")
+                                            Your order <b>ORD-{{$order->id}}</b> has been placed with the amount of <b>PHP {{$order->grandtotal}}</b>
+                                            <hr>
+                                        @elseif($order->payment_method == "ap")
+
+                                            @if($order->payment_status == "4")
+                                                Your order <b>ORD-{{$order->id}}</b> has been confirmed with the amount of <b>PHP {{$order->grandtotal}}</b> Thank you.
+                                                <hr>
+                                            @elseif($order->payment_status == "0")
+                                                @if(!empty($order->proof_image))
+                                                    Your order <b>ORD-{{$order->id}}</b> has been placed. wait for the confirmation.
+                                                    <hr>
+                                                @else
+                                                    Your order <b>ORD-{{$order->id}}</b> has been placed please settle your payment <a href="#" data-toggle="modal" data-target="#payment{{$order->id}}">here</a>
+                                                    <hr>
+                                                @endif
+
+                                            @endif
+
+                                        @endif
+
                                     @endforeach
+
+
                                 </div>
                                 <!-- /.card-body -->
                             </div>
@@ -460,7 +483,57 @@
             </div>
         </div>
     </div>
-    </div>
+
+    @foreach($Orders as $order)
+        @if($order->payment_status == 0 && $order->payment_method == "ap")
+            <!-- Modal -->
+            <form action="{{ route('proof.upload', $order->id) }}" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                    <div class="modal fade" id="payment{{$order->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <img id="img" class="img-fluid rounded mx-auto d-block" src="assets/images/{{$order->proof_image}}" alt="Proof">
+
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                                </div>
+                                                <div class="custom-file">
+                                                    <input name="image" type="file" class="custom-file-input" id="imgInp" aria-describedby="inputGroupFileAddon01">
+                                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <input name="_method" type="hidden" value="PUT">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+        @endif
+    @endforeach
+
+
     <!-- FOOTER -->
     <footer class="container mt-3 sticky-bottom">
 
@@ -478,6 +551,23 @@
 <script src='{{asset ('assets/fullcalendar/packages/core/locales-all.js') }}'></script>
 
 <script>
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                document.getElementById('img').src = e.target.result;
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imgInp").change(function () {
+        readURL(this);
+    });
+
     document.addEventListener('DOMContentLoaded', function() {
         var Calendar = FullCalendar.Calendar;
         var Draggable = FullCalendarInteraction.Draggable
@@ -536,6 +626,7 @@
 
         calendar.render();
     });
+
 </script>
 </body>
 </html>
